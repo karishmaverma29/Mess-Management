@@ -1,5 +1,9 @@
 import JWT from "jsonwebtoken";
-import userModel from "../models/userModel.js";
+
+import wardenModels from "../models/wardenModels.js";
+import managerModels from "../models/managerModels.js";
+import accountantModels from "../models/accountantModels.js";
+import userModels from "../models/userModels.js";
 
 //Protected Routes token base
 export const requireSignIn = async (req, res, next) => {
@@ -15,10 +19,32 @@ export const requireSignIn = async (req, res, next) => {
   }
 };
 
-//wardend middleware
+//user middleware
+export const isUser = async (req, res, next) => {
+  try {
+    const user = await userModels.findById(req.user._id);
+    if (user.role !== 0) {
+      return res.status(401).send({
+        success: false,
+        message: "UnAuthorized Access",
+      });
+    } else {
+      next();
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(401).send({
+      success: false,
+      error,
+      message: "Error in admin middelware",
+    });
+  }
+};
+
+//warden middleware
 export const isWarden = async (req, res, next) => {
   try {
-    const user = await userModel.findById(req.user._id);
+    const user = await wardenModels.findById(req.user._id);
     if (user.role !== 1) {
       return res.status(401).send({
         success: false,
@@ -40,7 +66,7 @@ export const isWarden = async (req, res, next) => {
 //accountant middleware
 export const isAccountant = async (req, res, next) => {
   try {
-    const user = await userModel.findById(req.user._id);
+    const user = await accountantModels.findById(req.user._id);
     if (user.role !== 2) {
       return res.status(401).send({
         success: false,
@@ -62,7 +88,7 @@ export const isAccountant = async (req, res, next) => {
 //manager middleware
 export const isManager = async (req, res, next) => {
   try {
-    const user = await userModel.findById(req.user._id);
+    const user = await managerModels.findById(req.user._id);
     if (user.role !== 3) {
       return res.status(401).send({
         success: false,

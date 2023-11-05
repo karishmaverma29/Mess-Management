@@ -19,11 +19,6 @@ export const userregisterController = async (req, res) => {
     const firstName = parts[0]; // Get the first part
     const firstNameLowercase = firstName.toLowerCase();
 
-    //for getting valid college format email id
-    const parts = name.split(" "); // Split the string by space
-    const firstName = parts[0]; // Get the first part
-    const firstNameLowercase = firstName.toLowerCase();
-
     //for verifying mail format
     if (email != `${firstNameLowercase}.${reg}@mnnit.ac.in`)
       return res.send({ message: "Wrong mail id" });
@@ -383,6 +378,7 @@ export const forgotPasswordController = async (req, res) => {
   }
 };
 
+//test controller
 export const testController = (req, res) => {
   res.status(200).send({
     message: "protected route",
