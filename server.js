@@ -1,12 +1,13 @@
-import express from 'express'
+//const can be replace with import in es6  (just use type:module in package.json)
+import express from "express";
+import dotenv, { config } from "dotenv";
 import morgan from "morgan";
 import connectDB from "./config/db.js";
-import dotenv from 'dotenv'
 
-dotenv.config();
+import authRoutes from "./routes/authRoute.js";
 
-
-const app =express()
+import cors from "cors";
+const app = express();
 
 // config database
 connectDB();
@@ -15,13 +16,14 @@ connectDB();
 app.use(express.json()); //for handling json req
 app.use(morgan("dev"));
 dotenv.config({ path: "./.env" });
+app.use(cors());
 
-app.get('/',(req,res)=>{
-    res.send("hello")
-})
+//routes
+app.use("/api/v1/auth", authRoutes);
 
-const PORT=process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
-app.listen(PORT,()=>{
-    console.log(`Server is running of ${PORT}`);
+//server listening
+app.listen(PORT, (req, res) => {
+  console.log(`server is running on port ${PORT}`);
 });
