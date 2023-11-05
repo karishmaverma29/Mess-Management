@@ -6,7 +6,6 @@ import wardenModels from "../models/wardenModels.js";
 import managerModels from "../models/managerModels.js";
 import accountantModels from "../models/accountantModels.js";
 
-
 //user registration
 export const userregisterController = async (req, res) => {
   try {
@@ -22,7 +21,7 @@ export const userregisterController = async (req, res) => {
 
     //for verifying mail format
     if (email != `${firstNameLowercase}.${reg}@mnnit.ac.in`)
-      return res.send({ message: "Wrong mail id" })
+      return res.send({ message: "Wrong mail id" });
 
     const existingUser = await userModels.findOne({ email });
     if (existingUser)
@@ -190,8 +189,6 @@ export const UserloginController = async (req, res) => {
   }
 };
 
-
-
 //warden login
 export const wardenloginController = async (req, res) => {
   try {
@@ -243,12 +240,6 @@ export const wardenloginController = async (req, res) => {
     });
   }
 };
-
-
-
-
-
-
 
 //accountant login
 export const accountantloginController = async (req, res) => {
@@ -302,15 +293,6 @@ export const accountantloginController = async (req, res) => {
   }
 };
 
-
-
-
-
-
-
-
-
-
 //manager login
 export const managerloginController = async (req, res) => {
   try {
@@ -363,27 +345,6 @@ export const managerloginController = async (req, res) => {
   }
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //forgotPasswordController
 export const forgotPasswordController = async (req, res) => {
   try {
@@ -417,6 +378,7 @@ export const forgotPasswordController = async (req, res) => {
   }
 };
 
+//test controller
 export const testController = (req, res) => {
   res.status(200).send({
     message: "protected route",
