@@ -1,13 +1,19 @@
 import express from "express";
 import JWT from "jsonwebtoken";
 import {
+  UserloginController,
+  wardenloginController,
+  accountantloginController,
+  managerloginController,
+
+  userregisterController,
   accountantregisterController,
-  forgotPasswordController,
-  loginController,
   managerregisterController,
-  registerController,
+   wardenregisterController,
+   
   testController,
-  wardenregisterController,
+  forgotPasswordController,
+  
 } from "../controllers/authController.js";
 // import { requireSignIn, isAdmin } from "../middlewares/authMiddleware.js";
 
@@ -16,7 +22,7 @@ const router = express.Router();
 
 //routing
 //register
-router.post("/register", registerController);
+router.post("/register", userregisterController);
 
 //warden register
 router.post("/wardenregister", wardenregisterController);
@@ -30,9 +36,15 @@ router.post("/managerregister", managerregisterController);
 //forget password
 router.post("/forgot-password", forgotPasswordController);
 
-//login
-router.post("/login", loginController);
+//user login
+router.post("/userlogin", UserloginController);
 
+//warden login
+router.post("/wardenlogin", wardenloginController);
+//accountant login
+router.post("/accountantlogin", accountantloginController);
+//manager login 
+router.post("/managerlogin", managerloginController);
 // //test
 // router.get("/test", requireSignIn, isAdmin, testController);
 
