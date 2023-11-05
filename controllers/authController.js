@@ -13,8 +13,13 @@ export const registerController = async (req, res) => {
       return res.send({ message: "field empty" });
     }
 
+    //for getting valid college format email id
+    const parts = name.split(" "); // Split the string by space
+    const firstName = parts[0]; // Get the first part
+    const firstNameLowercase = firstName.toLowerCase();
+
     //for verifying mail format
-    if (email != `${reg}@mnnit.ac.in`)
+    if (email != `${firstNameLowercase}.${reg}@mnnit.ac.in`)
       return res.send({ message: "Wrong mail id" });
 
     const existingUser = await userModels.findOne({ email });
