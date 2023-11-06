@@ -2,15 +2,16 @@ import express from "express";
 import JWT from "jsonwebtoken";
 import {
   UserloginController,
-  wardenloginController,
-  accountantloginController,
-  managerloginController,
+  // wardenloginController,
+  // accountantloginController,
+  // managerloginController,
   userregisterController,
   accountantregisterController,
   managerregisterController,
   wardenregisterController,
   testController,
   forgotPasswordController,
+  adminloginController,
 } from "../controllers/authController.js";
 import {
   isAccountant,
@@ -50,11 +51,11 @@ router.post("/forgot-password", forgotPasswordController);
 router.post("/userlogin", UserloginController);
 
 //warden login
-router.post("/wardenlogin", wardenloginController);
+router.post("/adminlogin", adminloginController);
 //accountant login
-router.post("/accountantlogin", accountantloginController);
-//manager login
-router.post("/managerlogin", managerloginController);
+// router.post("/accountantlogin", accountantloginController);
+// //manager login
+// router.post("/managerlogin", managerloginController);
 
 ////////////////////////////////////////////////////////////////// middlewares routes
 //isWarden
