@@ -50,8 +50,10 @@ router.post("/forgot-password", forgotPasswordController);
 //user login
 router.post("/userlogin", UserloginController);
 
-//warden login
+//admin login
 router.post("/adminlogin", adminloginController);
+
+
 //accountant login
 // router.post("/accountantlogin", accountantloginController);
 // //manager login
@@ -70,13 +72,20 @@ router.get("/test", requireSignIn, isWarden, testController);
 // //forget password
 // router.post("/forgot-password", forgotPasswordController);
 
-// //user protected route
-// router.get("/user-auth", requireSignIn, (req, res) => {
-//   res.status(200).send({ ok: true });
-// });
+//////////////////////////////////////////////////////////////////////user protected route
+router.get("/user-auth", requireSignIn, (req, res) => {
+  res.status(200).send({ ok: true });
+});
 
-// //admin protected route
-// router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
-//   res.status(200).send({ ok: true });
-// });
+///////////////////////////////////////////////////////////////////////admin protected route
+router.get("/admin-auth", requireSignIn, (req, res, next) => {
+  if (isWarden || isManager || isAccountant) {
+    // The user is a warden, manager, or accountant
+     next(); // Continue to the next middleware or route handler
+     res.status(200).send({ ok: true });
+  }
+
+  // If none of the conditions are met, send a response or do something else
+  res.status(403).send({ error: "Access denied" });
+});
 export default router;

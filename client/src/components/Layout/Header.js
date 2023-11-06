@@ -16,6 +16,25 @@ const Header = () => {
     Cookies.remove("auth");
     toast.success("Logout Successfully");
   };
+  
+const role = auth?.user?.role;
+
+const handleRoute = () => {
+  if (role === 1) {
+    return '/dashboard/warden';
+  } else if (role === 3) {
+    return '/dashboard/manager';
+  } else if (role === 0) {
+    return '/dashboard/student';
+  } else if (role === 2) {
+    return '/dashboard/accountant';
+  } else {
+    // Handle any other cases or provide a default route
+    return '/dashboard'; // You can change this to your default route
+  }
+};
+
+
 
   return (
     <>
@@ -57,14 +76,35 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <li className="nav-item">
+                  <li className="nav-item dropdown">
                     <NavLink
-                      onClick={handleLogout}
-                      to="/login"
-                      className="nav-link"
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
                     >
-                      Logout
+                      {auth?.user?.name}
                     </NavLink>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <NavLink
+                          to={handleRoute()} 
+                          className="dropdown-item"
+                        >
+                          Dashboard
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          onClick={handleLogout}
+                          to="/login"
+                          className="dropdown-item"
+                        >
+                          Logout
+                        </NavLink>
+                      </li>
+                    </ul>
                   </li>
                 </>
               )}
