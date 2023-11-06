@@ -9,10 +9,12 @@ import accountantModels from "../models/accountantModels.js";
 //user registration
 export const userregisterController = async (req, res) => {
   try {
-    const { name, reg, email, password, phone, hostel, role } = req.body;
-    if (!name || !reg || !email || !phone || !password || !hostel || !role) {
+    const { name, reg, email, password, phone, hostel } = req.body;
+    if (!name || !reg || !email || !phone || !password || !hostel ) {
       return res.send({ message: "field empty" });
     }
+
+    
 
     //for getting valid college format email id
     const parts = name.split(" "); // Split the string by space
@@ -29,6 +31,18 @@ export const userregisterController = async (req, res) => {
         success: false,
         message: "user already exist",
       });
+    
+
+      const existingUserReg = await userModels.findOne({ reg });
+      if (existingUserReg)
+        return res.status(200).send({
+          success: false,
+          message: "user already exist",
+          
+        });
+      
+
+    
 
     const hashedpassword = await hashpassword(password);
     const user = await new userModels({
@@ -38,7 +52,7 @@ export const userregisterController = async (req, res) => {
       phone,
       hostel,
       password: hashedpassword,
-      role,
+      
     }).save();
     res.status(200).send({
       success: true,
@@ -139,9 +153,9 @@ export const managerregisterController = async (req, res) => {
 //User login
 export const UserloginController = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role} = req.body;
     //validation
-    if (!email || !password) {
+    if (!email || !password || role) {
       return res.status(404).send({
         success: false,
         message: "Invalid email or password",
@@ -189,12 +203,12 @@ export const UserloginController = async (req, res) => {
   }
 };
 
-//warden login
-export const wardenloginController = async (req, res) => {
+//admin login
+export const adminloginController = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password ,role} = req.body;
     //validation
-    if (!email || !password) {
+    if (!email || !password || !role) {
       return res.status(404).send({
         success: false,
         message: "Invalid email or password",
@@ -202,7 +216,14 @@ export const wardenloginController = async (req, res) => {
     }
     //check user
 
-    const user = await wardenModels.findOne({ email });
+    let user;
+    
+    if(role==1)  user = await wardenModels.findOne({ email });
+    else if(role==2)  user = await accountantModels.findOne({ email });
+    else if(role==3) user = await managerModels.findOne({ email });
+
+
+    
     if (!user) {
       return res.status(404).send({
         success: false,
@@ -241,109 +262,9 @@ export const wardenloginController = async (req, res) => {
   }
 };
 
-//accountant login
-export const accountantloginController = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    //validation
-    if (!email || !password) {
-      return res.status(404).send({
-        success: false,
-        message: "Invalid email or password",
-      });
-    }
-    //check user
 
-    const user = await accountantModels.findOne({ email });
-    if (!user) {
-      return res.status(404).send({
-        success: false,
-        message: "Email is not registerd",
-      });
-    }
-    const match = await comparePassword(password, user.password);
-    if (!match) {
-      return res.status(200).send({
-        success: false,
-        message: "Invalid Password",
-      });
-    }
-    //token
-    const token = await JWT.sign({ _id: user._id }, process.env.SECRET_KEY, {
-      expiresIn: "7d",
-    });
-    res.status(200).send({
-      success: true,
-      message: "login successfully",
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-      },
-      token,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "Error in login",
-      error,
-    });
-  }
-};
 
-//manager login
-export const managerloginController = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    //validation
-    if (!email || !password) {
-      return res.status(404).send({
-        success: false,
-        message: "Invalid email or password",
-      });
-    }
-    //check user
 
-    const user = await managerModels.findOne({ email });
-    if (!user) {
-      return res.status(404).send({
-        success: false,
-        message: "Email is not registerd",
-      });
-    }
-    const match = await comparePassword(password, user.password);
-    if (!match) {
-      return res.status(200).send({
-        success: false,
-        message: "Invalid Password",
-      });
-    }
-    //token
-    const token = await JWT.sign({ _id: user._id }, process.env.SECRET_KEY, {
-      expiresIn: "7d",
-    });
-    res.status(200).send({
-      success: true,
-      message: "login successfully",
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-      },
-      token,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({
-      success: false,
-      message: "Error in login",
-      error,
-    });
-  }
-};
 
 //forgotPasswordController
 export const forgotPasswordController = async (req, res) => {
