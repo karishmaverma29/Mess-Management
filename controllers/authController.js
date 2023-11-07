@@ -5,16 +5,15 @@ import JWT from "jsonwebtoken";
 import wardenModels from "../models/wardenModels.js";
 import managerModels from "../models/managerModels.js";
 import accountantModels from "../models/accountantModels.js";
+import nodemailer from "nodemailer";
 
 //user registration
 export const userregisterController = async (req, res) => {
   try {
     const { name, reg, email, password, phone, hostel } = req.body;
-    if (!name || !reg || !email || !phone || !password || !hostel ) {
+    if (!name || !reg || !email || !phone || !password || !hostel) {
       return res.send({ message: "field empty" });
     }
-
-    
 
     //for getting valid college format email id
     const parts = name.split(" "); // Split the string by space
@@ -31,18 +30,13 @@ export const userregisterController = async (req, res) => {
         success: false,
         message: "user already exist",
       });
-    
 
-      const existingUserReg = await userModels.findOne({ reg });
-      if (existingUserReg)
-        return res.status(200).send({
-          success: false,
-          message: "user already exist",
-          
-        });
-      
-
-    
+    const existingUserReg = await userModels.findOne({ reg });
+    if (existingUserReg)
+      return res.status(200).send({
+        success: false,
+        message: "user already exist",
+      });
 
     const hashedpassword = await hashpassword(password);
     const user = await new userModels({
@@ -52,7 +46,6 @@ export const userregisterController = async (req, res) => {
       phone,
       hostel,
       password: hashedpassword,
-      
     }).save();
     res.status(200).send({
       success: true,
@@ -153,7 +146,7 @@ export const managerregisterController = async (req, res) => {
 //User login
 export const UserloginController = async (req, res) => {
   try {
-    const { email, password, role} = req.body;
+    const { email, password, role } = req.body;
     //validation
     if (!email || !password || role) {
       return res.status(404).send({
@@ -206,7 +199,7 @@ export const UserloginController = async (req, res) => {
 //admin login
 export const adminloginController = async (req, res) => {
   try {
-    const { email, password ,role} = req.body;
+    const { email, password, role } = req.body;
     //validation
     if (!email || !password || !role) {
       return res.status(404).send({
@@ -217,13 +210,11 @@ export const adminloginController = async (req, res) => {
     //check user
 
     let user;
-    
-    if(role==1)  user = await wardenModels.findOne({ email });
-    else if(role==2)  user = await accountantModels.findOne({ email });
-    else if(role==3) user = await managerModels.findOne({ email });
 
+    if (role == 1) user = await wardenModels.findOne({ email });
+    else if (role == 2) user = await accountantModels.findOne({ email });
+    else if (role == 3) user = await managerModels.findOne({ email });
 
-    
     if (!user) {
       return res.status(404).send({
         success: false,
@@ -262,40 +253,72 @@ export const adminloginController = async (req, res) => {
   }
 };
 
-
-
-
-
-//forgotPasswordController
+///////////////////forgot passward
 export const forgotPasswordController = async (req, res) => {
   try {
-    const { email, answer, newPassword } = req.body;
-    if (!email || !answer || !newPassword) {
-      res.status(400).send({ message: "Field required" });
-    }
+    const { email } = req.body;
+    const user = await userModels.findOne({ email });
 
-    //check
-    const user = await userModels.findOne({ email, answer });
     if (!user) {
-      return res.status(404).send({
-        success: false,
-        message: "Wrong Email Or Answer",
-      });
+      return res.status(404).json({ Status: "User not found" });
     }
 
-    const hashed = await hashpassword(newPassword);
-    await userModels.findByIdAndUpdate(user._id, { password: hashed });
-    res.status(200).send({
-      success: true,
-      message: "Password Reset Successfully",
+    const token = await JWT.sign({ _id: user._id }, process.env.SECRET_KEY, {
+      expiresIn: "1d",
+    });
+
+    var transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASS,
+      },
+    });
+
+    var mailOptions = {
+      from: process.env.EMAIL,
+      to: user.email, // Use the user's email here
+      subject: "Reset Password Link",
+      text: `http://localhost:3000/reset_password/${user._id}/${token}`,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    return res.status(200).json({ Status: "Success" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ Status: "An error occurred" });
+  }
+};
+
+/////////reset passward
+export const resetpassward = async (req, res) => {
+  try {
+    const { id, token } = req.params;
+    const { password } = req.body;
+    JWT.verify(token, process.env.SECRET_KEY, async (err, decoded) => {
+      if (err) {
+        return res.json({ Status: "Error with token" });
+      } else {
+        try {
+          const hash = await hashpassword(password);
+          console.log(`new hash password is ${hash}`);
+          const updatedUser = await userModels.findByIdAndUpdate(
+            { _id: id },
+            { password: hash }
+          );
+          if (updatedUser) {
+            res.send({ Status: "Success" });
+          } else {
+            res.send({ Status: "User not found" });
+          }
+        } catch (error) {
+          res.send({ Status: error.message });
+        }
+      }
     });
   } catch (e) {
-    console.log(e);
-    res.status(400).send({
-      success: false,
-      message: "Something went wrong",
-      e,
-    });
+    res.send({ Status: e.message });
   }
 };
 

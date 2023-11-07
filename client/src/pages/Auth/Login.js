@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/AuthStyles.css";
 import { useLocation } from "react-router-dom";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 //dropdown of login as ........
 import InputLabel from "@mui/material/InputLabel";
@@ -99,34 +100,6 @@ const Login = () => {
               />
             </div>
 
-            {/* <div>
-           <div className="form-check">
-             <input className="form-check-input" type="radio" name="flexRadioDefault"   onClick={() => setRole(0)} />
-             <label className="form-check-label" htmlFor="flexRadioDefault1">
-             Student
-             </label>
-             
-           </div>
-           <div className="form-check">
-             <input className="form-check-input" type="radio" name="flexRadioDefault"  onClick={() => setRole(1)}  />
-             <label className="form-check-label" htmlFor="flexRadioDefault2">
-              Warden
-             </label>
-           </div>
-           <div className="form-check">
-             <input className="form-check-input" type="radio" name="flexRadioDefault"  onClick={() => setRole(2)}  />
-             <label className="form-check-label" htmlFor="flexRadioDefault2">
-              Accountant
-             </label>
-           </div>
-           <div className="form-check">
-             <input className="form-check-input" type="radio" name="flexRadioDefault"  onClick={() => setRole(3)}  />
-             <label className="form-check-label" htmlFor="flexRadioDefault2">
-              manager
-             </label>
-           </div>
-         </div>  */}
-
             <div>
               <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                 <InputLabel id="demo-select-small-label">Login As</InputLabel>
@@ -163,6 +136,11 @@ const Login = () => {
             <button type="submit" className="btn btn-primary">
               Login
             </button>
+            {role === 0 && (
+              <div className="mb-3">
+                <Link to="/forgot-password">Forgot Password</Link>
+              </div>
+            )}
           </form>
         </div>
       </Layout>
