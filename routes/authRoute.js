@@ -12,6 +12,7 @@ import {
   testController,
   forgotPasswordController,
   adminloginController,
+  resetpassward,
 } from "../controllers/authController.js";
 import {
   isAccountant,
@@ -53,7 +54,6 @@ router.post("/userlogin", UserloginController);
 //admin login
 router.post("/adminlogin", adminloginController);
 
-
 //accountant login
 // router.post("/accountantlogin", accountantloginController);
 // //manager login
@@ -69,8 +69,11 @@ router.post("/adminlogin", adminloginController);
 
 router.get("/test", requireSignIn, isWarden, testController);
 
-// //forget password
-// router.post("/forgot-password", forgotPasswordController);
+//forget password
+router.post("/forgotpassword", forgotPasswordController);
+
+//reset passward
+router.post("/reset-password/:id/:token", resetpassward);
 
 //////////////////////////////////////////////////////////////////////user protected route
 router.get("/user-auth", requireSignIn, (req, res) => {
@@ -81,8 +84,8 @@ router.get("/user-auth", requireSignIn, (req, res) => {
 router.get("/admin-auth", requireSignIn, (req, res, next) => {
   if (isWarden || isManager || isAccountant) {
     // The user is a warden, manager, or accountant
-     next(); // Continue to the next middleware or route handler
-     res.status(200).send({ ok: true });
+    next(); // Continue to the next middleware or route handler
+    res.status(200).send({ ok: true });
   }
 
   // If none of the conditions are met, send a response or do something else
