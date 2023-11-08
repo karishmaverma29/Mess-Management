@@ -6,6 +6,7 @@ import wardenModels from "../models/wardenModels.js";
 import managerModels from "../models/managerModels.js";
 import accountantModels from "../models/accountantModels.js";
 import nodemailer from "nodemailer";
+import Menu from "../models/messModels.js";
 
 //user registration
 export const userregisterController = async (req, res) => {
@@ -328,3 +329,55 @@ export const testController = (req, res) => {
     message: "protected route",
   });
 };
+
+/////////////////////////////////////////gettting menu from database
+
+export const getMenu=async( req,res)=>{
+  
+    try {
+      const menuData = await Menu.find();
+      res.status(200).json(menuData);
+    } catch (error) {
+      console.error('Error fetching menu data:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+
+  /////////////////////////////////////////updating menu in database
+
+ 
+
+  export const updateMenu = async (req, res) => {
+    try {
+      const { day, time, updatedtext } = req.body;
+      console.log(day);
+      console.log(time);
+      // Determine the field to update based on the 'time' value
+      let updateField = '';
+      if (time === 'breakfast') {
+        updateField = 'breakfast';
+      } else if (time === 'lunch') {
+        updateField = 'lunch';
+      } else if (time === 'dinner') {
+        updateField = 'dinner';
+      }
+  
+      // Use the Mongoose model to find and update the document based on 'dayOfWeek'
+      const updatedMenu = await Menu.findOneAndUpdate(
+        { dayOfWeek: day },
+        { [updateField]: updatedtext },
+        { new: true } // Set to true to return the updated document
+      );
+  
+      if (!updatedMenu) {
+        return res.status(404).json({ message: 'Menu not found' });
+      }
+  
+      // Respond with the updated data or a success message
+      res.status(200).json(updatedMenu);
+    } catch (error) {
+      console.error('Error updating menu data:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+  

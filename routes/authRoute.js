@@ -13,6 +13,8 @@ import {
   forgotPasswordController,
   adminloginController,
   resetpassward,
+  getMenu,
+  updateMenu,
 } from "../controllers/authController.js";
 import {
   isAccountant,
@@ -91,4 +93,16 @@ router.get("/admin-auth", requireSignIn, (req, res, next) => {
   // If none of the conditions are met, send a response or do something else
   res.status(403).send({ error: "Access denied" });
 });
+
+
+////////////////////////////////mess
+
+router.get('/getmenu', getMenu);
+router.post('/updatemenu',updateMenu);
+
+
+
 export default router;
+
+
+

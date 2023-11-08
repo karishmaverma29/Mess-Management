@@ -13,6 +13,7 @@ import ManagerDashboard from "./pages/Admin/managerDashboard";
 import AccountantDashboard from "./pages/Admin/accountantDashboard";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassward";
+import Messmenu from "./pages/Messmenu/Messmenu";
 function App() {
   return (
     <>
@@ -31,6 +32,8 @@ function App() {
         </Route>
 
         <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+        <Route path="/dashboard/manager/updatemenu" element={<Messmenu/>}></Route>
+        
         <Route
           path="/reset_password/:id/:token"
           element={<ResetPassword />}
