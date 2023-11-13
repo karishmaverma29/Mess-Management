@@ -17,15 +17,18 @@ const Messmenu= () => {
   const [updatedtext,setUpdatedtext]=useState("");
   
 
-  const Getmenu=()=>{
-    axios.get('/api/v1/auth/getmenu') // Replace with the actual API endpoint
-    .then((response) => {
-      setMenuData(response.data);
-    })
-    .catch((error) => {
-      console.error('Error fetching menu data:', error);
-    });
-  }
+  const Getmenu = async () => {
+    try {
+      await axios
+        .get("/api/v1/auth/getmenu") // Replace with the actual API endpoint
+        .then((response) => {
+          setMenuData(response.data);
+        });
+    } catch (error) {
+      console.error("Error fetching menu data:", error);
+    }
+  };
+  
 
 
   useEffect(() => {
