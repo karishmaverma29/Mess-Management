@@ -16,6 +16,10 @@ const Messmenu = () => {
   const [value, setValue] = useState([]);
   const [combinedValues, setCombinedValues] = useState([]);
   const [menuRequests, setMenuRequests] = useState([]);
+  const [day,setDay]=useState("");
+  const [time,setTime]=useState("");
+  const [updatedtext,setUpdatedtext]=useState("");
+  
 
   const Getmenu = async () => {
     try {
@@ -28,6 +32,7 @@ const Messmenu = () => {
       console.error("Error fetching menu data:", error);
     }
   };
+
   const fetchMenuRequests = async () => {
     try {
       const response = await axios.get("/api/v1/general/viewmessreq");
@@ -37,6 +42,7 @@ const Messmenu = () => {
     }
   };
 
+ 
   useEffect(() => {
     // Fetch menu data from your backend API
     Getmenu();
