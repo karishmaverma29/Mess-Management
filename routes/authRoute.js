@@ -15,6 +15,8 @@ import {
   resetpassward,
   getMenu,
   updateMenu,
+  // approveReqbymanager,
+  // approvemenu,
 } from "../controllers/authController.js";
 import {
   isAccountant,
@@ -79,30 +81,23 @@ router.post("/reset-password/:id/:token", resetpassward);
 
 //////////////////////////////////////////////////////////////////////user protected route
 router.get("/user-auth", requireSignIn, (req, res) => {
-  res.status(200).send({ ok: true });
+  return res.status(200).send({ ok: true });
 });
 
 ///////////////////////////////////////////////////////////////////////admin protected route
 router.get("/admin-auth", requireSignIn, (req, res, next) => {
   if (isWarden || isManager || isAccountant) {
     // The user is a warden, manager, or accountant
-    next(); // Continue to the next middleware or route handler
-    res.status(200).send({ ok: true });
+    // next(); // Continue to the next middleware or route handler
+    return res.status(200).send({ ok: true });
   }
 
   // If none of the conditions are met, send a response or do something else
-  res.status(403).send({ error: "Access denied" });
+  return res.status(403).send({ error: "Access denied" });
 });
 
-
 ////////////////////////////////mess
-
-router.get('/getmenu', getMenu);
-router.post('/updatemenu',updateMenu);
-
-
+router.get("/getmenu", getMenu);
+router.post("/updatemenu", updateMenu);
 
 export default router;
-
-
-
