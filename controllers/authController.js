@@ -75,14 +75,14 @@ export const wardenregisterController = async (req, res) => {
       password: hashedpassword,
       role,
     }).save();
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       message: "User Registration success",
       user,
     });
   } catch (e) {
     console.log(e);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Error in registration",
       e,
@@ -102,14 +102,14 @@ export const accountantregisterController = async (req, res) => {
       password: hashedpassword,
       role,
     }).save();
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       message: "User Registration success",
       user,
     });
   } catch (e) {
     console.log(e);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Error in registration",
       e,
@@ -129,14 +129,14 @@ export const managerregisterController = async (req, res) => {
       password: hashedpassword,
       role,
     }).save();
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       message: "User Registration success",
       user,
     });
   } catch (e) {
     console.log(e);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Error in registration",
       e,
@@ -174,7 +174,7 @@ export const UserloginController = async (req, res) => {
     const token = await JWT.sign({ _id: user._id }, process.env.SECRET_KEY, {
       expiresIn: "7d",
     });
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       message: "login successfully",
       user: {
@@ -189,7 +189,7 @@ export const UserloginController = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Error in login",
       error,
@@ -233,7 +233,7 @@ export const adminloginController = async (req, res) => {
     const token = await JWT.sign({ _id: user._id }, process.env.SECRET_KEY, {
       expiresIn: "7d",
     });
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       message: "login successfully",
       user: {
@@ -246,14 +246,13 @@ export const adminloginController = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Error in login",
       error,
     });
   }
 };
-
 ///////////////////forgot passward
 export const forgotPasswordController = async (req, res) => {
   try {
@@ -309,75 +308,69 @@ export const resetpassward = async (req, res) => {
             { password: hash }
           );
           if (updatedUser) {
-            res.send({ Status: "Success" });
+            return res.send({ Status: "Success" });
           } else {
-            res.send({ Status: "User not found" });
+            return res.send({ Status: "User not found" });
           }
         } catch (error) {
-          res.send({ Status: error.message });
+          return res.send({ Status: error.message });
         }
       }
     });
   } catch (e) {
-    res.send({ Status: e.message });
+    return res.send({ Status: e.message });
   }
 };
 
 //test controller
 export const testController = (req, res) => {
-  res.status(200).send({
+  return res.status(200).send({
     message: "protected route",
   });
 };
-
 /////////////////////////////////////////gettting menu from database
 
-export const getMenu=async( req,res)=>{
-  
-    try {
-      const menuData = await Menu.find();
-      res.status(200).json(menuData);
-    } catch (error) {
-      console.error('Error fetching menu data:', error);
-      res.status(500).json({ message: 'Internal server error' });
-    }
+export const getMenu = async (req, res) => {
+  try {
+    const menuData = await Menu.find({});
+    return res.status(200).send(menuData);
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
   }
+};
 
-  /////////////////////////////////////////updating menu in database
+/////////////////////////////////////////updating menu in database
 
- 
-
-  export const updateMenu = async (req, res) => {
-    try {
-      const { day, time, updatedtext } = req.body;
-      console.log(day);
-      console.log(time);
-      // Determine the field to update based on the 'time' value
-      let updateField = '';
-      if (time === 'breakfast') {
-        updateField = 'breakfast';
-      } else if (time === 'lunch') {
-        updateField = 'lunch';
-      } else if (time === 'dinner') {
-        updateField = 'dinner';
-      }
-  
-      // Use the Mongoose model to find and update the document based on 'dayOfWeek'
-      const updatedMenu = await Menu.findOneAndUpdate(
-        { dayOfWeek: day },
-        { [updateField]: updatedtext },
-        { new: true } // Set to true to return the updated document
-      );
-  
-      if (!updatedMenu) {
-        return res.status(404).json({ message: 'Menu not found' });
-      }
-  
-      // Respond with the updated data or a success message
-      res.status(200).json(updatedMenu);
-    } catch (error) {
-      console.error('Error updating menu data:', error);
-      res.status(500).json({ message: 'Internal server error' });
+export const updateMenu = async (req, res) => {
+  try {
+    const { day, time, updatedtext } = req.body;
+    console.log(day);
+    console.log(time);
+    // Determine the field to update based on the 'time' value
+    let updateField = "";
+    if (time === "breakfast") {
+      updateField = "breakfast";
+    } else if (time === "lunch") {
+      updateField = "lunch";
+    } else if (time === "dinner") {
+      updateField = "dinner";
     }
-  };
-  
+
+    // Use the Mongoose model to find and update the document based on 'dayOfWeek'
+    const updatedMenu = await Menu.findOneAndUpdate(
+      { dayOfWeek: day },
+      { [updateField]: updatedtext },
+      { new: true } // Set to true to return the updated document
+    );
+
+    if (!updatedMenu) {
+      return res.status(404).json({ message: "Menu not found" });
+    }
+
+    // Respond with the updated data or a success message
+    return res.status(200).json(updatedMenu);
+  } catch (error) {
+    console.error("Error updating menu data:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};

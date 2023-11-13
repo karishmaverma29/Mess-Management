@@ -33,14 +33,13 @@ export const isUser = async (req, res, next) => {
     }
   } catch (error) {
     console.log(error);
-    res.status(401).send({
+    return res.status(401).send({
       success: false,
       error,
       message: "Error in admin middelware",
     });
   }
 };
-
 
 //warden middleware
 export const isWarden = async (req, res, next) => {
@@ -56,7 +55,7 @@ export const isWarden = async (req, res, next) => {
     }
   } catch (error) {
     console.log(error);
-    res.status(401).send({
+    return res.status(401).send({
       success: false,
       error,
       message: "Error in admin middelware",
@@ -78,7 +77,7 @@ export const isAccountant = async (req, res, next) => {
     }
   } catch (error) {
     console.log(error);
-    res.status(401).send({
+    return res.status(401).send({
       success: false,
       error,
       message: "Error in admin middelware",
@@ -100,7 +99,7 @@ export const isManager = async (req, res, next) => {
     }
   } catch (error) {
     console.log(error);
-    res.status(401).send({
+    return res.status(401).send({
       success: false,
       error,
       message: "Error in admin middelware",
