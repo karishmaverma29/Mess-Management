@@ -1,5 +1,5 @@
 import express from "express";
-import { resolveComplainController, userComplainController, viewComplainController } from './../controllers/generalController.js';
+import { feedbackController, resolveComplainController, userComplainController, viewComplainController, viewfeedbackController } from './../controllers/generalController.js';
 
 
 
@@ -15,6 +15,12 @@ router.post("/complain", userComplainController);
 router.get("/viewcomplain", viewComplainController);
 // for resolve complain
 router.put("/resolvecomplain/:id", resolveComplainController);
+
+//for feedback
+router.post("/feedback", feedbackController);
+
+//for viewing feedback
+router.get("/viewfeedback", viewfeedbackController);
 
 
 

@@ -13,34 +13,6 @@ const View = () => {
     const [auth, setAuth] = useAuth();
    
 
-    // const handleApproveComplain = async (id) => {
-    //   try {
-    //     const response = await axios.put('/api/v1/general/resolvecomplain', { id }); // Replace with the actual API endpoint
-    //     setResolve("1");
-    //     window.location.reload();
-    //   } catch (error) {
-    //     console.error('Error in resolving complain data:', error);
-    //   }
-    // };
-
-    
-    // const handleApproveComplain = async (id) => {
-    //   try {
-    //     // Send a PUT request to your backend API to update the complaint status
-    //     const response = await axios.put('/api/v1/general/resolvecomplain', ); // Replace with the actual API endpoint
-    
-    //     // Assuming the backend returns the updated complaint, update the local state
-    //     // setComplain((prevComplains) =>
-    //     //   prevComplains.map((c) => (c._id === id ? { ...c, resolve: 1 } : c))
-    //     // );
-    
-        
-        
-    //   } catch (error) {
-    //     console.error('Error in resolving complain data:', error);
-    //   }
-    // };
-
 
     const handleApproveComplain = async (id) => {
       try {
@@ -74,56 +46,36 @@ const View = () => {
 
   return (
 
-
 <div>
-      {complain.map((c) => (
-        <div key={c.reg}>
-          <h1>Name: {c.name}</h1>
-          <h1>Reg no.: {c.reg}</h1>
-          {/* Uncomment the line below if needed */}
-          <h1>Complain: {c.complain}</h1>
-          
-          {/* const id=({c._id}) */}
-          
-          {c.resolve === "0" && (auth?.user?.role === "1" || auth?.user?.name === "warden") ? (
-            <button onClick={() => handleApproveComplain( c._id )}>Approve Complain</button>
-          
-          ) : (
-            <>
-              <h1>Status: Resolved</h1>
-            </>
-          )}
+  {complain.map((c) => (
+    <div key={c.reg} style={{ marginBottom: '20px' }}>
+      <h2 style={{ fontWeight: 'bold' }}>Name: {c.name}</h2>
+      <h3 style={{ fontWeight: 'bold' }}>Reg no.: {c.reg}</h3>
+      <p style={{ fontWeight: 'bold' }}>Complain: {c.complain}</p>
 
-{auth?.user?.role=== "1" && (
-  <>
-    {c.resolve === "0"  && (
-      <button onClick={() => handleApproveComplain(c._id)}>Approve Complain</button>
-    )}
-
-    {c.resolve === "1" && (
-      <h1>Status: Resolved</h1>
-    )}
-  </>
-)}
-   
-   {c.resolve === "0"  && (
-    <h1>Status: UnResolved</h1>
- )}
-
- {c.resolve === "1" && (
-   <h1>Status: Resolved</h1>
- )}
-
-
-
-
-
-
-          <hr />
-        </div>
-      ))}
+      {auth?.user?.role === 1 ? (
+        c.resolve === "1" ? (
+          <p style={{ fontWeight: 'bold' }}>Status: Resolved</p>
+        ) : (
+          <>
+            <button onClick={() => handleApproveComplain(c._id)}>
+              Approve Complain
+            </button>
+            <p style={{ fontWeight: 'bold' }}>Status: Unresolved</p>
+          </>
+        )
+      ) : c.resolve === "0" ? (
+        <p style={{ fontWeight: 'bold' }}>Status: Unresolved</p>
+      ) : (
+        <p style={{ fontWeight: 'bold' }}>Status: Resolved</p>
+      )}
+      <hr />
     </div>
-  
+  ))}
+</div>
+
+
+
 
  
 
