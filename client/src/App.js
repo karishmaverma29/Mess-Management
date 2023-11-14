@@ -14,6 +14,8 @@ import AccountantDashboard from "./pages/Admin/accountantDashboard";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassward";
 import Messmenu from "./pages/Messmenu/Messmenu";
+import UserMenu from "./pages/user/userMenu";
+import Menureq from "./pages/Admin/menureq";
 import Complain from './pages/Complain/Complain';
 import View from "./pages/Complain/viewComplain";
 import Feedback from './pages/feedback/feedback';
@@ -51,11 +53,16 @@ function App() {
         </Route>
 
         <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+
+        <Route path="/dashboard/student/getmenu" element={<UserMenu />}></Route>
+        <Route path="/dashboard/warden/manureq" element={<Menureq />}></Route>
+        <Route
+          path="/dashboard/manager/updatemenu"
+          element={<Messmenu />}
+        ></Route>
+
         <Route path="/dashboard/manager/updatemenu" element={<Messmenu/>}></Route>
 
-
-        
-        
         <Route
           path="/reset_password/:id/:token"
           element={<ResetPassword />}

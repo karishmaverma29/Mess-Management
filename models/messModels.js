@@ -3,27 +3,34 @@ import mongoose from "mongoose";
 const menuSchema = new mongoose.Schema({
   dayOfWeek: {
     type: String,
-    enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    enum: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
     required: true,
-    // default: 'Monday',
-    
+    default: "Monday",
   },
+
   breakfast: {
     type: String,
     required: true,
-    // default: 'Default Breakfast', 
+    default: "Default Breakfast",
   },
   lunch: {
     type: String,
     required: true,
-    // default: 'Default Lunch', 
+    default: "Default Lunch",
   },
   dinner: {
     type: String,
     required: true,
-    // default: 'Default Dinner', 
+    default: "Default Dinner",
   },
 });
 
-export default mongoose.model('Menu', menuSchema);
-
+export default mongoose.model("Menu", menuSchema);

@@ -20,6 +20,14 @@ const wardenSchema = new mongoose.Schema(
       type: Number,
       default: 1,
     },
+    managerId: {
+      type: mongoose.ObjectId,
+      ref: "manager",
+    },
+    managerreq: {
+      type: [String], // Array of strings
+      default: [],
+    },
   },
   { timestamps: true }
 );
