@@ -16,10 +16,6 @@ const Messmenu = () => {
   const [value, setValue] = useState([]);
   const [combinedValues, setCombinedValues] = useState([]);
   const [menuRequests, setMenuRequests] = useState([]);
-  const [day,setDay]=useState("");
-  const [time,setTime]=useState("");
-  const [updatedtext,setUpdatedtext]=useState("");
-  
 
   const Getmenu = async () => {
     try {
@@ -42,7 +38,6 @@ const Messmenu = () => {
     }
   };
 
- 
   useEffect(() => {
     // Fetch menu data from your backend API
     Getmenu();

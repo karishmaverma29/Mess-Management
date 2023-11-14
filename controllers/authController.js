@@ -339,6 +339,7 @@ export const getMenu = async (req, res) => {
   }
 };
 
+/////////////////////////////////////////updating menu in database
 
 /////////////////////////////////////////updating menu in database
 
@@ -347,32 +348,7 @@ export const updateMenu = async (req, res) => {
     const { day, time, updatedtext } = req.body;
     console.log(day);
     console.log(time);
-    // Determine the field to update based on the 'time' value
-    let updateField = "";
-    if (time === "breakfast") {
-      updateField = "breakfast";
-    } else if (time === "lunch") {
-      updateField = "lunch";
-    } else if (time === "dinner") {
-      updateField = "dinner";
-    }
 
-    // Use the Mongoose model to find and update the document based on 'dayOfWeek'
-    const updatedMenu = await Menu.findOneAndUpdate(
-      { dayOfWeek: day },
-      { [updateField]: updatedtext },
-      { new: true } // Set to true to return the updated document
-    );
-
-
-
-/////////////////////////////////////////updating menu in database
-
-export const updateMenu = async (req, res) => {
-  try {
-    const { day, time, updatedtext } = req.body;
-    console.log(day);
-    console.log(time);
     // Determine the field to update based on the 'time' value
     let updateField = "";
     if (time === "breakfast") {
@@ -401,6 +377,3 @@ export const updateMenu = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
-
-};
-

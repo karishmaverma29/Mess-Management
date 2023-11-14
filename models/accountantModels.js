@@ -23,5 +23,4 @@ const accountantSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
 export default mongoose.model("accountant", accountantSchema);

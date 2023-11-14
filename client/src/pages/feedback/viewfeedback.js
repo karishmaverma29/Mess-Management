@@ -1,5 +1,5 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const Viewfeedback = () => {
   const [feedback, setFeedback] = useState([]);
@@ -10,7 +10,7 @@ const Viewfeedback = () => {
 
   const getFeedback = async () => {
     try {
-      const response = await axios.get('/api/v1/general/viewfeedback'); // Replace with the actual API endpoint
+      const response = await axios.get("/api/v1/general/viewfeedback"); // Replace with the actual API endpoint
       setFeedback(response.data);
 
       // Calculate totals and counts
@@ -30,11 +30,13 @@ const Viewfeedback = () => {
 
       setTotalServiceRating(
         response.data.reduce((total, item) => {
-          return total + (item.serviceRating ? parseInt(item.serviceRating) : 0);
+          return (
+            total + (item.serviceRating ? parseInt(item.serviceRating) : 0)
+          );
         }, 0)
       );
     } catch (error) {
-      console.error('Error fetching feedback data:', error);
+      console.error("Error fetching feedback data:", error);
     }
   };
 
@@ -57,7 +59,8 @@ const Viewfeedback = () => {
             Average Food Rating: {totalFoodRating / totalFeedback} (out of 5)
           </p>
           <p>
-            Average Service Rating: {totalServiceRating / totalFeedback} (out of 5)
+            Average Service Rating: {totalServiceRating / totalFeedback} (out of
+            5)
           </p>
 
           <ul>
