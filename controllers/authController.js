@@ -341,11 +341,14 @@ export const getMenu = async (req, res) => {
 
 /////////////////////////////////////////updating menu in database
 
+/////////////////////////////////////////updating menu in database
+
 export const updateMenu = async (req, res) => {
   try {
     const { day, time, updatedtext } = req.body;
     console.log(day);
     console.log(time);
+
     // Determine the field to update based on the 'time' value
     let updateField = "";
     if (time === "breakfast") {

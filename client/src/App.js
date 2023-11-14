@@ -20,6 +20,8 @@ import Createpoll from "./pages/Polling/Createpoll";
 import Viewpoll from "./pages/Polling/Viewpoll";
 import PollResult from "./pages/Polling/PollResult";
 import CreatenewPoll from "./pages/Polling/CreateNewpoll";
+import Feedback from "./pages/feedback/feedback";
+import Viewfeedback from "./pages/feedback/viewfeedback";
 
 function App() {
   return (
@@ -31,10 +33,18 @@ function App() {
           <Route path="student" element={<Dashboard />} />
         </Route>
 
+        {/* feedback and complain routes  */}
         <Route path="/dashboard/student/complain" element={<Complain />} />
 
         <Route path="/dashboard/student/viewcomplain" element={<View />} />
+
+        <Route path="/dashboard/student/feedback" element={<Feedback />} />
+
         <Route path="/dashboard/warden/viewcomplain" element={<View />} />
+        <Route
+          path="/dashboard/warden/viewfeedback"
+          element={<Viewfeedback />}
+        />
 
         {/* for admin  */}
         <Route path="/dashboard" element={<AdminRoute />}>
@@ -42,13 +52,13 @@ function App() {
           <Route path="manager" element={<ManagerDashboard />} />
           <Route path="accountant" element={<AccountantDashboard />} />
         </Route>
+        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+        <Route path="/dashboard/student/getmenu" element={<UserMenu />}></Route>
+        <Route path="/dashboard/warden/manureq" element={<Menureq />}></Route>
         <Route
           path="/dashboard/manager/updatemenu"
           element={<Messmenu />}
         ></Route>
-        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-        <Route path="/dashboard/student/getmenu" element={<UserMenu />}></Route>
-        <Route path="/dashboard/warden/manureq" element={<Menureq />}></Route>
 
         {/* poll routes  */}
         <Route
@@ -68,10 +78,6 @@ function App() {
           element={<PollResult />}
         ></Route>
 
-        <Route
-          path="/dashboard/manager/updatemenu"
-          element={<Messmenu />}
-        ></Route>
         <Route
           path="/reset_password/:id/:token"
           element={<ResetPassword />}

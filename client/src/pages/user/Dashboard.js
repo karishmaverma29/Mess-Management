@@ -29,6 +29,12 @@ const Dashboard = () => {
           View poll
         </button>
       </NavLink>
+      <hr />
+      <NavLink to="/dashboard/student/feedback">
+        <button type="button" className="btn btn-outline-primary">
+          Feedback
+        </button>
+      </NavLink>
     </Layout>
   );
 };

@@ -35,25 +35,26 @@ const View = () => {
   return (
     <div>
       {complain.map((c) => (
-        <div key={c.reg}>
-          <h1>Name: {c.name}</h1>
-          <h1>Reg no.: {c.reg}</h1>
-          <h1>Complain: {c.complain}</h1>
+        <div key={c.reg} style={{ marginBottom: "20px" }}>
+          <h2 style={{ fontWeight: "bold" }}>Name: {c.name}</h2>
+          <h3 style={{ fontWeight: "bold" }}>Reg no.: {c.reg}</h3>
+          <p style={{ fontWeight: "bold" }}>Complain: {c.complain}</p>
+
           {auth?.user?.role === 1 ? (
             c.resolve === "1" ? (
-              <h1>Status: Resolved</h1>
+              <p style={{ fontWeight: "bold" }}>Status: Resolved</p>
             ) : (
               <>
                 <button onClick={() => handleApproveComplain(c._id)}>
                   Approve Complain
                 </button>
-                <h1>Status: Unresolved</h1>
+                <p style={{ fontWeight: "bold" }}>Status: Unresolved</p>
               </>
             )
           ) : c.resolve === "0" ? (
-            <h1>Status: Unresolved</h1>
+            <p style={{ fontWeight: "bold" }}>Status: Unresolved</p>
           ) : (
-            <h1>Status: Resolved</h1>
+            <p style={{ fontWeight: "bold" }}>Status: Resolved</p>
           )}
           <hr />
         </div>

@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  feedbackController,
   createNewPollController,
   createPollcontroller,
   deletePollcontroller,
@@ -7,6 +8,7 @@ import {
   submitPollcontroller,
   userComplainController,
   viewComplainController,
+  viewfeedbackController,
   viewPollcontroller,
 } from "./../controllers/generalController.js";
 import {
@@ -24,6 +26,12 @@ router.post("/complain", userComplainController);
 router.get("/viewcomplain", viewComplainController);
 // for resolve complain
 router.put("/resolvecomplain/:id", resolveComplainController);
+
+//for feedback
+router.post("/feedback", feedbackController);
+
+//for viewing feedback
+router.get("/viewfeedback", viewfeedbackController);
 //for sending menureq to warden
 router.post("/menureqsend", menureqsend);
 //for view mess menu req
