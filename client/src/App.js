@@ -16,6 +16,9 @@ import ResetPassword from "./pages/ResetPassward";
 import Messmenu from "./pages/Messmenu/Messmenu";
 import Complain from './pages/Complain/Complain';
 import View from "./pages/Complain/viewComplain";
+import Feedback from './pages/feedback/feedback';
+import Viewfeedback from "./pages/feedback/viewfeedback";
+
 
 
 function App() {
@@ -32,7 +35,11 @@ function App() {
         <Route path="/dashboard/student/complain" element={<Complain />} />
 
         <Route path="/dashboard/student/viewcomplain" element={<View />} />
+
+        <Route path="/dashboard/student/feedback" element={<Feedback />} />
+
         <Route path="/dashboard/warden/viewcomplain" element={<View />} />
+        <Route path="/dashboard/warden/viewfeedback" element={<Viewfeedback/>} />
 
         
 

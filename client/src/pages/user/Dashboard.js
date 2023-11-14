@@ -12,6 +12,10 @@ const Dashboard = () => {
 <NavLink to="/dashboard/student/viewcomplain">
   <button type="button" className="btn btn-primary">View Complain</button>
 </NavLink>
+
+<NavLink to="/dashboard/student/feedback">
+  <button type="button" className="btn btn-outline-primary">Feedback</button>
+</NavLink>
     </Layout>
   );
 };

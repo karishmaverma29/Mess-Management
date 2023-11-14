@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import { comparePassword, hashpassword } from "../helpers/authHelper.js";
 import JWT from "jsonwebtoken";
 import complainModels from "../models/complainModels.js";
+import feedbackModels from "../models/feedbackModels.js";
 
 
 // fro registring complain
@@ -77,27 +78,53 @@ export const viewComplainController=async( req,res)=>{
     }
   };
 
-  // export const resolveComplainController = async (req, res) => {
-  //   try {
-  //     const { id } = req.body;
-  
-  //     const updatedComplain = await complainModels.findOneAndUpdate(
-  //       { _id: id },
-  //       { resolve: 1 },
-  //       { new: true } // Set to true to return the updated document
-  //     );
-  
-  //     if (!updatedComplain) {
-  //       // If the document is not found
-  //       return res.status(404).json({ message: 'Complain not found' });
-  //     }
-  
-  //     res.status(200).json(updatedComplain);
-  //   } catch (error) {
-  //     console.error('Error updating complain data:', error);
-  //     res.status(500).json({ message: 'Internal server error' });
-  //   }
-  // };
+ //////////////////////////////////////////////////////////////feed back
+
+
   
 
+export const feedbackController = async (req, res) => {
+    try {
+      const { foodRating,serviceRating,feedback,name} = req.body;
+      if (!foodRating || !serviceRating ) {
+        return res.send({ message: "field empty" });
+      }
+      
+      const userfeedback = await new feedbackModels({
+        foodRating,
+            serviceRating,
+            feedback,
+            name,
+      }).save();
+  
+
+      res.status(200).send({
+        success: true,
+        message: "Feedback Submitted",
+        
+      });
+    } catch (e) {
+      console.log(e);
+      res.status(500).send({
+        success: false,
+        message: "Error in feedback submission",
+        e,
+      });
+    }
+  };
+
+  ////////////////////////////////////////////////////view feedback
+
+  export const viewfeedbackController=async( req,res)=>{
+
+  
+    try {
+
+      const feedbackData = await feedbackModels.find({});
+      res.status(200).json(feedbackData);
+    } catch (error) {
+      console.error('Error fetching feedback data:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
 

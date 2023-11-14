@@ -8,6 +8,10 @@ const WardenDashboard = () => {
       <NavLink to="/dashboard/warden/viewcomplain">
   <button type="button" className="btn btn-primary">View Complain</button>
 </NavLink>
+<hr/>
+<NavLink to="/dashboard/warden/viewfeedback">
+  <button type="button" className="btn btn-primary">View feedback</button>
+</NavLink>
     </Layout>
   );
 };
