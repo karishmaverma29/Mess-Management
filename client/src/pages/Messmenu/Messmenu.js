@@ -28,6 +28,7 @@ const Messmenu = () => {
       console.error("Error fetching menu data:", error);
     }
   };
+
   const fetchMenuRequests = async () => {
     try {
       const response = await axios.get("/api/v1/general/viewmessreq");

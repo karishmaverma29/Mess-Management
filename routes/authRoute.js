@@ -88,7 +88,7 @@ router.get("/user-auth", requireSignIn, (req, res) => {
 router.get("/admin-auth", requireSignIn, (req, res, next) => {
   if (isWarden || isManager || isAccountant) {
     // The user is a warden, manager, or accountant
-    // next(); // Continue to the next middleware or route handler
+    //  // Continue to the next middleware or route handler
     return res.status(200).send({ ok: true });
   }
 

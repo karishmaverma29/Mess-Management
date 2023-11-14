@@ -11,6 +11,24 @@ const WardenDashboard = () => {
           menu update req
         </button>
       </NavLink>
+      <hr />
+      <NavLink to="/dashboard/warden/viewcomplain">
+        <button type="button" className="btn btn-primary">
+          View Complain
+        </button>
+      </NavLink>
+      <hr />
+      <NavLink to="/dashboard/warden/createnewpoll">
+        <button type="button" className="btn btn-primary">
+          create poll
+        </button>
+      </NavLink>
+      <hr />
+      <NavLink to="/dashboard/warden/pollresult">
+        <button type="button" className="btn btn-primary">
+          Poll result
+        </button>
+      </NavLink>
     </Layout>
   );
 };
