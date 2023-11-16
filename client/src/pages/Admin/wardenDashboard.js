@@ -35,6 +35,12 @@ const WardenDashboard = () => {
           View feedback
         </button>
       </NavLink>
+      <hr />
+      <NavLink to="/dashboard/warden/viewuser">
+        <button type="button" className="btn btn-primary">
+          View User
+        </button>
+      </NavLink>
     </Layout>
   );
 };

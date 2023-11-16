@@ -1,4 +1,3 @@
-
 import React from "react";
 import Layout from "./../../components/Layout/Layout";
 import { useState } from "react";
@@ -63,7 +62,7 @@ const Login = () => {
 
         navigate(location.state || "/");
       } else {
-        toast.message(res.data.message);
+        toast.error(res.data.message);
       }
     } catch (error) {
       console.log(error);

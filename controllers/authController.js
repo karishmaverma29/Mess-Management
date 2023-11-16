@@ -152,7 +152,7 @@ export const UserloginController = async (req, res) => {
     if (!email || !password || role) {
       return res.status(404).send({
         success: false,
-        message: "Invalid email or password",
+        message: "input field empty",
       });
     }
     //check user
@@ -163,11 +163,18 @@ export const UserloginController = async (req, res) => {
         message: "Email is not registerd",
       });
     }
+
+    if (user.blocked === "1")
+      return res.status(200).send({
+        success: false,
+        message: "You are temporarily Blocked ",
+      });
+
     const match = await comparePassword(password, user.password);
     if (!match) {
       return res.status(200).send({
         success: false,
-        message: "Invalid Password",
+        message: "Invalid Credential",
       });
     }
     //token

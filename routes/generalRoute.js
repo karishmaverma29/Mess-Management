@@ -10,6 +10,10 @@ import {
   viewComplainController,
   viewfeedbackController,
   viewPollcontroller,
+  viewAlluserController,
+  blockUserController,
+  unblockUserController,
+  viewFilteredUsersController,
 } from "./../controllers/generalController.js";
 import {
   ApproveMenuReq,
@@ -48,4 +52,9 @@ router.put("/createpoll/:pollId", createPollcontroller);
 router.get("/getPoll", viewPollcontroller);
 router.post("/submitpoll", submitPollcontroller);
 router.delete("/deletepoll/:pollId", deletePollcontroller);
+//all user
+router.get("/viewuser", viewAlluserController);
+router.post("/blockuser", blockUserController);
+router.post("/unblockuser", unblockUserController);
+router.get("/viewFilteredUsers", viewFilteredUsersController);
 export default router;

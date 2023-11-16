@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -27,6 +26,10 @@ const userSchema = new mongoose.Schema(
     hostel: {
       type: String,
       required: true,
+    },
+    blocked: {
+      type: String,
+      default: "0",
     },
     role: {
       type: Number,

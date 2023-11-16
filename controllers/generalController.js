@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import complainModels from "../models/complainModels.js";
 import feedbackModels from "../models/feedbackModels.js";
 import pollModels from "../models/pollModels.js";
+import userModels from "../models/userModels.js";
 
 //for menu approval req
 export const menureqsend = async (req, res) => {
@@ -341,5 +342,70 @@ export const deletePollcontroller = async (req, res) => {
   } catch (error) {
     console.error("Error deleting poll:", error);
     res.status(500).json({ message: "Internal Server Error", status: "error" });
+  }
+};
+
+//all user data
+export const viewAlluserController = async (req, res) => {
+  try {
+    const AlluserData = await userModels.find({});
+    res.status(200).json(AlluserData);
+  } catch (error) {
+    console.error("Error fetching all user data:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+//block a user
+export const blockUserController = async (req, res) => {
+  const { id } = req.body;
+  try {
+    // Find the user by ID and update the "blocked" field to 1
+    const user = await userModels.findByIdAndUpdate(id, { blocked: "1" });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({ message: "User blocked successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+//unblock a user
+export const unblockUserController = async (req, res) => {
+  const { id } = req.body;
+  try {
+    // Find the user by ID and update the "blocked" field to 1
+    const user = await userModels.findByIdAndUpdate(id, { blocked: "0" });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({ message: "User blocked successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// view user with reg with search filter
+export const viewFilteredUsersController = async (req, res) => {
+  try {
+    const searchTerm = req.query.search;
+
+    const searchCriteria = searchTerm
+      ? { reg: { $regex: new RegExp(searchTerm, "i") } }
+      : {};
+
+    const filteredUsers = await userModels.find(searchCriteria);
+
+    res.status(200).json(filteredUsers);
+  } catch (error) {
+    console.error("Error fetching filtered user data:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };

@@ -22,6 +22,7 @@ import PollResult from "./pages/Polling/PollResult";
 import CreatenewPoll from "./pages/Polling/CreateNewpoll";
 import Feedback from "./pages/feedback/feedback";
 import Viewfeedback from "./pages/feedback/viewfeedback";
+import Viewuser from "./pages/user/viewuser";
 
 function App() {
   return (
@@ -77,7 +78,7 @@ function App() {
           path="/dashboard/warden/pollresult"
           element={<PollResult />}
         ></Route>
-
+        <Route path="/dashboard/warden/viewuser" element={<Viewuser />}></Route>
         <Route
           path="/reset_password/:id/:token"
           element={<ResetPassword />}
