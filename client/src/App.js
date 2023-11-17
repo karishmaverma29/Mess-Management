@@ -23,6 +23,7 @@ import CreatenewPoll from "./pages/Polling/CreateNewpoll";
 import Feedback from "./pages/feedback/feedback";
 import Viewfeedback from "./pages/feedback/viewfeedback";
 import Viewuser from "./pages/user/viewuser";
+import Meal from "./pages/recipe/meal";
 
 function App() {
   return (
@@ -59,6 +60,10 @@ function App() {
         <Route
           path="/dashboard/manager/updatemenu"
           element={<Messmenu />}
+        ></Route>
+        <Route
+          path="/dashboard/manager/recipe"
+          element={<Meal />}
         ></Route>
 
         {/* poll routes  */}

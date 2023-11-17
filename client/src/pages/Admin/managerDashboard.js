@@ -27,6 +27,13 @@ const ManagerDashboard = () => {
           Update mess menu
         </button>
       </NavLink>
+      <hr/>
+      <NavLink to="/dashboard/manager/recipe">
+        <button type="button" className="btn btn-primary">
+         Recipe
+        </button>
+      </NavLink>
+
     </Layout>
   );
 };
