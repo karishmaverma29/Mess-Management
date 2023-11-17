@@ -23,6 +23,7 @@ import CreatenewPoll from "./pages/Polling/CreateNewpoll";
 import Feedback from "./pages/feedback/feedback";
 import Viewfeedback from "./pages/feedback/viewfeedback";
 import Viewuser from "./pages/user/viewuser";
+import Nutrition from "./pages/Nutrition/nutrition";
 
 function App() {
   return (
@@ -86,6 +87,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<Pagenotfound />} />
+        <Route path="/dashboard/student/nutrition" element={<Nutrition />} />
       </Routes>
     </>
   );
