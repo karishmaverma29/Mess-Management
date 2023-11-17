@@ -35,6 +35,12 @@ const Dashboard = () => {
           Feedback
         </button>
       </NavLink>
+      <hr />
+      <NavLink to="/dashboard/student/tracker">
+        <button type="button" className="btn btn-outline-primary">
+          Tracker
+        </button>
+      </NavLink>
     </Layout>
   );
 };
