@@ -35,6 +35,12 @@ const Dashboard = () => {
           Feedback
         </button>
       </NavLink>
+
+      <NavLink to="/dashboard/student/nutrition">
+        <button type="button" className="btn btn-outline-primary">
+          Nutrition
+          </button>
+      </NavLink>
       <hr />
       <NavLink to="/dashboard/student/tracker">
         <button type="button" className="btn btn-outline-primary">
