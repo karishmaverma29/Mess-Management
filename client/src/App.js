@@ -25,6 +25,7 @@ import Viewfeedback from "./pages/feedback/viewfeedback";
 import Viewuser from "./pages/user/viewuser";
 import Nutrition from "./pages/Nutrition/nutrition";
 import Meal from "./pages/recipe/meal";
+import Tracker from "./pages/tracker/tracker";
 
 function App() {
   return (
@@ -63,6 +64,11 @@ function App() {
           element={<Messmenu />}
         ></Route>
         <Route path="/dashboard/manager/recipe" element={<Meal />}></Route>
+
+        <Route
+          path="/dashboard/student/tracker"
+          element={<Tracker />}
+        ></Route>
 
         {/* poll routes  */}
         <Route
