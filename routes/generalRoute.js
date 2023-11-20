@@ -14,6 +14,8 @@ import {
   blockUserController,
   unblockUserController,
   viewFilteredUsersController,
+  viewSingleuserController,
+  updatesingleuserController,
 } from "./../controllers/generalController.js";
 import {
   ApproveMenuReq,
@@ -57,4 +59,6 @@ router.get("/viewuser", viewAlluserController);
 router.post("/blockuser", blockUserController);
 router.post("/unblockuser", unblockUserController);
 router.get("/viewFilteredUsers", viewFilteredUsersController);
+router.get("/myprofile", viewSingleuserController);
+router.put("/updateProfile/:userId", updatesingleuserController);
 export default router;

@@ -409,3 +409,75 @@ export const viewFilteredUsersController = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+//for getting specific user detail
+export const viewSingleuserController = async (req, res) => {
+  const { userId } = req.query;
+
+  try {
+    const user = await userModels.findById(userId);
+
+    if (user) {
+      return res.json(user);
+    } else {
+      return res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+// update userprofile
+
+export const updatesingleuserController = async (req, res) => {
+  // try {
+  //   const userId = req.params.userId;
+  //   const { phone, year } = req.body;
+
+  //   // Find the user by ID
+  //   const user = await userModels.findById(userId);
+
+  //   // Update user details
+  //   user.phone = phone;
+  //   user.year = year;
+
+  //   // Update avatar if provided
+  //   if (req.file) {
+  //     user.avatar.data = req.file.buffer;
+  //     user.avatar.contentType = req.file.mimetype;
+  //   }
+
+  //   // Save the updated user
+  //   const updatedUser = await user.save();
+
+  //   return res.status(200).json(updatedUser);
+  // } catch (error) {
+  //   console.error("Error updating profile:", error);
+  //   res.status(500).json({ error: "Internal Server Error" });
+  // }
+
+  try {
+    const userId = req.params.userId;
+    const { phone, year } = req.body;
+
+    // Construct update object based on provided fields
+    const updateObject = {};
+    if (phone) updateObject.phone = phone;
+    if (year) updateObject.year = year;
+
+    // Find and update user
+    const updatedUser = await userModels.findOneAndUpdate(
+      { _id: userId },
+      { $set: updateObject },
+      { new: true } // Return the updated document
+    );
+
+    res
+      .status(200)
+      .json({ message: "Profile updated successfully", user: updatedUser });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};

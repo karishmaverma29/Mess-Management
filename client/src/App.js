@@ -25,6 +25,8 @@ import Viewfeedback from "./pages/feedback/viewfeedback";
 import Viewuser from "./pages/user/viewuser";
 import Nutrition from "./pages/Nutrition/nutrition";
 import Meal from "./pages/recipe/meal";
+import Tracker from "./pages/tracker/tracker";
+import Profile from "./pages/user/profile";
 
 function App() {
   return (
@@ -64,6 +66,9 @@ function App() {
         ></Route>
         <Route path="/dashboard/manager/recipe" element={<Meal />}></Route>
 
+        <Route path="/dashboard/student/tracker" element={<Tracker />}></Route>
+        {/* profile  */}
+        <Route path="/dashboard/student/profile" element={<Profile />}></Route>
         {/* poll routes  */}
         <Route
           path="/dashboard/warden/createnewpoll"
