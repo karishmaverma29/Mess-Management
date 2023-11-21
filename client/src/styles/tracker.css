@@ -7,10 +7,14 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-}
-
-
-
+} */
+/* body{
+  min-height: 100vh;
+  background: url("https://digitshack.com/codepen/bmical/bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Nunito", sans-serif;
+}  */
 .container {
   position: absolute;
   left: 50%;

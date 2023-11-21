@@ -1,11 +1,6 @@
-// // React component using useState
-// import React, { useState } from 'react';
-// import axios from 'axios';
-import "./tracker.css";
-
-
 import React, { useState } from "react";
-
+import "../../styles/tracker.css";
+import { useEffect } from "react";
 const BMICalculator = () => {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
@@ -38,7 +33,12 @@ const BMICalculator = () => {
 
     setComment(`Comment: you are ${status}`);
   };
+  useEffect(() => {
+    // Add the class to the body element when the component mounts
+    document.body.classList.add("page-specific-body");
 
+    // Remove the class from the body element when the component unmounts
+  }, []);
   return (
     <div className="container">
       <div className="box">
@@ -62,7 +62,9 @@ const BMICalculator = () => {
               onChange={(e) => setWeight(e.target.value)}
             />
           </div>
-          <button id="calculate" onClick={calculateBMI}>Calculate BMI</button>
+          <button id="calculate" onClick={calculateBMI}>
+            Calculate BMI
+          </button>
         </div>
         <div className="result">
           <p>Your BMI is</p>

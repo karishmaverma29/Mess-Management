@@ -6,6 +6,9 @@ import complainModels from "../models/complainModels.js";
 import feedbackModels from "../models/feedbackModels.js";
 import pollModels from "../models/pollModels.js";
 import userModels from "../models/userModels.js";
+import paymentModels from '../models/paymentModels.js';
+import fs from "fs";
+
 
 //for menu approval req
 export const menureqsend = async (req, res) => {
@@ -407,5 +410,96 @@ export const viewFilteredUsersController = async (req, res) => {
   } catch (error) {
     console.error("Error fetching filtered user data:", error);
     res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+//for getting specific user detail
+export const viewSingleuserController = async (req, res) => {
+  const { userId } = req.query;
+
+  try {
+    const user = await userModels.findById(userId);
+
+    if (user) {
+      return res.json(user);
+    } else {
+      return res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+// update userprofile
+
+export const updatesingleuserController = async (req, res) => {
+ 
+
+  try {
+    const userId = req.params.userId;
+    const { phone, year } = req.body;
+
+    // Construct update object based on provided fields
+    const updateObject = {};
+    if (phone) updateObject.phone = phone;
+    if (year) updateObject.year = year;
+
+    // Find and update user
+    const updatedUser = await userModels.findOneAndUpdate(
+      { _id: userId },
+      { $set: updateObject },
+      { new: true } // Return the updated document
+    );
+
+    res
+      .status(200)
+      .json({ message: "Profile updated successfully", user: updatedUser });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+//payment controlller
+
+export const paymentController = async (req, res) => {
+  try {
+    const userid=req.params.userid;
+    const {description } =
+      req.fields;
+    const { photo } = req.files;
+    //alidation
+    console.log(userid);
+    
+    const user=await userModels.findById(userid);
+    
+    if(user)
+    {
+      // const receipt = new paymentModels({ ...req.fields });
+
+      const userName = user.name;
+      const userReg=user.reg;
+      const receipt = new paymentModels({ description, name: userName, reg: userReg,imageData: {} });
+      if (photo) {
+        receipt.imageData.data = fs.readFileSync(photo.path);
+        receipt.imageData.contentType = photo.type;
+      }
+      await receipt.save();
+
+     return res.status(201).send({
+        success: true,
+        message: "Photo Uploaded Successfully",
+        receipt,
+      });
+    }
+   
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error in uploading photo",
+    });
   }
 };

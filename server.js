@@ -5,6 +5,7 @@ import morgan from "morgan";
 import connectDB from "./config/db.js";
 import generalRoutes from "./routes/generalRoute.js";
 import authRoutes from "./routes/authRoute.js";
+import formidable from "formidable";
 
 import cors from "cors";
 const app = express();

@@ -47,8 +47,13 @@ const Dashboard = () => {
           Tracker
         </button>
       </NavLink>
+      <hr />
+      <NavLink to="/dashboard/student/profile">
+        <button type="button" className="btn btn-outline-primary">
+          profile
+        </button>
+      </NavLink>
     </Layout>
   );
 };
-
 export default Dashboard;
