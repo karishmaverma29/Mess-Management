@@ -27,6 +27,10 @@ import Nutrition from "./pages/Nutrition/nutrition";
 import Meal from "./pages/recipe/meal";
 import Tracker from "./pages/tracker/tracker";
 import Profile from "./pages/user/profile";
+import Payment from "./pages/payment/Payment";
+
+
+
 
 function App() {
   return (
@@ -70,6 +74,8 @@ function App() {
         {/* profile  */}
         <Route path="/dashboard/student/profile" element={<Profile />}></Route>
         {/* poll routes  */}
+        <Route path="/dashboard/student/profile/payment" element={<Payment/>}></Route>
+        {/* payment route */}
         <Route
           path="/dashboard/warden/createnewpoll"
           element={<CreatenewPoll />}

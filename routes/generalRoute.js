@@ -16,6 +16,7 @@ import {
   viewFilteredUsersController,
   viewSingleuserController,
   updatesingleuserController,
+  paymentController,
 } from "./../controllers/generalController.js";
 import {
   ApproveMenuReq,
@@ -23,6 +24,8 @@ import {
   menureqsend,
   viewMenuRequests,
 } from "../controllers/generalController.js";
+
+import formidable from "express-formidable";
 
 const router = express.Router();
 
@@ -46,6 +49,10 @@ router.get("/viewmessreq", viewMenuRequests);
 router.delete("/deletereq", Deletereq);
 //approve menu req
 router.put("/approvemenureq", ApproveMenuReq);
+
+//for payment
+router.post("/payment/:userid", formidable(),paymentController);
+
 
 //create new poll
 router.post("/createnewpoll", createNewPollController);

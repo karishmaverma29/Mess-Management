@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { useAuth } from "../../context/auth";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 const Profile = () => {
   const [avatar, setAvatar] = useState(null);
@@ -175,6 +176,7 @@ const Profile = () => {
                     />
                   </div>
                 </div>
+
                 <div className="form-group mb-3">
                   <div className="col-lg-offset-3 col-lg-8">
                     <button
@@ -185,7 +187,19 @@ const Profile = () => {
                       Save
                     </button>
                   </div>
+       
                 </div>
+
+                <NavLink to="/dashboard/student/profile/payment">
+        <button type="button" className="btn btn-danger">
+          Payment
+        </button>
+      </NavLink>
+
+                
+  
+             
+                
               </form>
             </div>
           </div>

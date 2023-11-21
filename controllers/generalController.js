@@ -6,6 +6,9 @@ import complainModels from "../models/complainModels.js";
 import feedbackModels from "../models/feedbackModels.js";
 import pollModels from "../models/pollModels.js";
 import userModels from "../models/userModels.js";
+import paymentModels from '../models/paymentModels.js';
+import fs from "fs";
+
 
 //for menu approval req
 export const menureqsend = async (req, res) => {
@@ -431,31 +434,7 @@ export const viewSingleuserController = async (req, res) => {
 // update userprofile
 
 export const updatesingleuserController = async (req, res) => {
-  // try {
-  //   const userId = req.params.userId;
-  //   const { phone, year } = req.body;
-
-  //   // Find the user by ID
-  //   const user = await userModels.findById(userId);
-
-  //   // Update user details
-  //   user.phone = phone;
-  //   user.year = year;
-
-  //   // Update avatar if provided
-  //   if (req.file) {
-  //     user.avatar.data = req.file.buffer;
-  //     user.avatar.contentType = req.file.mimetype;
-  //   }
-
-  //   // Save the updated user
-  //   const updatedUser = await user.save();
-
-  //   return res.status(200).json(updatedUser);
-  // } catch (error) {
-  //   console.error("Error updating profile:", error);
-  //   res.status(500).json({ error: "Internal Server Error" });
-  // }
+ 
 
   try {
     const userId = req.params.userId;
@@ -479,5 +458,48 @@ export const updatesingleuserController = async (req, res) => {
   } catch (error) {
     console.error("Error updating profile:", error);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+//payment controlller
+
+export const paymentController = async (req, res) => {
+  try {
+    const userid=req.params.userid;
+    const {description } =
+      req.fields;
+    const { photo } = req.files;
+    //alidation
+    console.log(userid);
+    
+    const user=await userModels.findById(userid);
+    
+    if(user)
+    {
+      // const receipt = new paymentModels({ ...req.fields });
+
+      const userName = user.name;
+      const userReg=user.reg;
+      const receipt = new paymentModels({ description, name: userName, reg: userReg,imageData: {} });
+      if (photo) {
+        receipt.imageData.data = fs.readFileSync(photo.path);
+        receipt.imageData.contentType = photo.type;
+      }
+      await receipt.save();
+
+     return res.status(201).send({
+        success: true,
+        message: "Photo Uploaded Successfully",
+        receipt,
+      });
+    }
+   
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      error,
+      message: "Error in uploading photo",
+    });
   }
 };
