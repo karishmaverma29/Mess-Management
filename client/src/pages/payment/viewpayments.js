@@ -10,6 +10,7 @@ const Viewpayments = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   const Getallpayment = async () => {
     try {
@@ -61,6 +62,14 @@ const Viewpayments = () => {
     }
   };
 
+  const handleCardHover = (index) => {
+    setHoveredCard(index);
+  };
+
+  const handleCardLeave = () => {
+    setHoveredCard(null);
+  };
+
   useEffect(() => {
     Getallpayment();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,7 +78,13 @@ const Viewpayments = () => {
   return (
     <div>
       <div
-        style={{ marginBottom: "20px", display: "flex", alignItems: "center" }}
+        style={{
+          marginBottom: "20px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center", // Center the content horizontally
+          marginTop: "20px", // Add margin from the top
+        }}
       >
         <input
           type="text"
@@ -94,9 +109,12 @@ const Viewpayments = () => {
         </Button>
       </div>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {Allpayment.map((c) => (
+        {Allpayment.map((c, index) => (
           <div
             key={c.reg}
+            onMouseEnter={() => handleCardHover(index)}
+            onMouseLeave={handleCardLeave}
+            onClick={handleCardLeave}
             style={{
               width: "30%",
               margin: "1.5%",
@@ -106,9 +124,7 @@ const Viewpayments = () => {
               border: "2px solid #ccc",
               borderRadius: "8px",
               transition: "transform 0.3s ease-in-out",
-              ":hover": {
-                transform: "scale(1.05)",
-              },
+              transform: `scale(${hoveredCard === index ? 1.05 : 1})`,
             }}
           >
             <div>
