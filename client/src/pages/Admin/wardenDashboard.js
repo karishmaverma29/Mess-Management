@@ -41,6 +41,12 @@ const WardenDashboard = () => {
           View User
         </button>
       </NavLink>
+      <hr />
+      <NavLink to="/dashboard/warden/viewexpenses">
+        <button type="button" className="btn btn-primary">
+          View Expenses
+        </button>
+      </NavLink>
     </Layout>
   );
 };

@@ -28,6 +28,12 @@ import Meal from "./pages/recipe/meal";
 import Tracker from "./pages/tracker/tracker";
 import Profile from "./pages/user/profile";
 import Payment from "./pages/payment/Payment";
+import Expenses from "./pages/expenses/Expenses";
+
+import Viewexpenses from "./pages/expenses/viewexpenses";
+
+
+
 
 
 
@@ -76,6 +82,17 @@ function App() {
         {/* poll routes  */}
         <Route path="/dashboard/student/profile/payment" element={<Payment/>}></Route>
         {/* payment route */}
+
+
+
+      {/* for accountant expenses */}
+        <Route path="/dashboard/accountant/expenses" element={<Expenses/>}></Route>
+        <Route path="/dashboard/warden/viewexpenses" element={<Viewexpenses/>}></Route>
+       
+        
+
+
+
         <Route
           path="/dashboard/warden/createnewpoll"
           element={<CreatenewPoll />}

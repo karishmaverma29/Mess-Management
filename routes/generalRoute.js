@@ -17,6 +17,8 @@ import {
   viewSingleuserController,
   updatesingleuserController,
   paymentController,
+  expensesController,
+  viewAllexpensesController,
 } from "./../controllers/generalController.js";
 import {
   ApproveMenuReq,
@@ -52,6 +54,12 @@ router.put("/approvemenureq", ApproveMenuReq);
 
 //for payment
 router.post("/payment/:userid", formidable(),paymentController);
+
+//for accountant expenses
+router.post("/expenses", expensesController);
+
+router.get("/viewexpenses", viewAllexpensesController);
+
 
 
 //create new poll
