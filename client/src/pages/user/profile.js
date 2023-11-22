@@ -187,19 +187,22 @@ const Profile = () => {
                       Save
                     </button>
                   </div>
-       
                 </div>
 
                 <NavLink to="/dashboard/student/profile/payment">
-        <button type="button" className="btn btn-danger">
-          Payment
-        </button>
-      </NavLink>
-
-                
-  
-             
-                
+                  <button type="button" className="btn btn-danger">
+                    Payment
+                  </button>
+                </NavLink>
+                {singleUser && singleUser.paid === "1" ? (
+                  <span style={{ margin: "0 10px", fontWeight: "bold" }}>
+                    Status: Paid{singleUser.verified ? " and Verified" : ""}
+                  </span>
+                ) : (
+                  <span style={{ margin: "0 10px", fontWeight: "bold" }}>
+                    Status: Unpaid
+                  </span>
+                )}
               </form>
             </div>
           </div>
