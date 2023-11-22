@@ -39,6 +39,10 @@ const userSchema = new mongoose.Schema(
       data: Buffer, // Image data stored as Buffer
       contentType: String, // MIME type of the image
     },
+    paid: {
+      type: String,
+      default: "0",
+    },
     role: {
       type: Number,
       default: 0,

@@ -6,9 +6,8 @@ import complainModels from "../models/complainModels.js";
 import feedbackModels from "../models/feedbackModels.js";
 import pollModels from "../models/pollModels.js";
 import userModels from "../models/userModels.js";
-import paymentModels from '../models/paymentModels.js';
+import paymentModels from "../models/paymentModels.js";
 import fs from "fs";
-
 
 //for menu approval req
 export const menureqsend = async (req, res) => {
@@ -432,10 +431,7 @@ export const viewSingleuserController = async (req, res) => {
 };
 
 // update userprofile
-
 export const updatesingleuserController = async (req, res) => {
- 
-
   try {
     const userId = req.params.userId;
     const { phone, year } = req.body;
@@ -462,44 +458,165 @@ export const updatesingleuserController = async (req, res) => {
 };
 
 //payment controlller
-
 export const paymentController = async (req, res) => {
   try {
-    const userid=req.params.userid;
-    const {description } =
-      req.fields;
+    const userid = req.params.userid;
+    const { description } = req.fields;
     const { photo } = req.files;
     //alidation
     console.log(userid);
-    
-    const user=await userModels.findById(userid);
-    
-    if(user)
-    {
+
+    const user = await userModels.findById(userid);
+
+    if (user) {
       // const receipt = new paymentModels({ ...req.fields });
 
       const userName = user.name;
-      const userReg=user.reg;
-      const receipt = new paymentModels({ description, name: userName, reg: userReg,imageData: {} });
+      const userReg = user.reg;
+      const receipt = new paymentModels({
+        description,
+        name: userName,
+        reg: userReg,
+        imageData: {},
+        student: userid,
+      });
       if (photo) {
         receipt.imageData.data = fs.readFileSync(photo.path);
         receipt.imageData.contentType = photo.type;
       }
       await receipt.save();
 
-     return res.status(201).send({
+      return res.status(201).send({
         success: true,
         message: "Photo Uploaded Successfully",
         receipt,
       });
     }
-   
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
       error,
       message: "Error in uploading photo",
+    });
+  }
+};
+
+//get all user payment detail
+export const getallpayment = async (req, res) => {
+  try {
+    const payments = await paymentModels
+      .find({})
+      .select("-imageData")
+      .limit(12)
+      .sort({ createdAt: -1 });
+    res.status(200).send({
+      success: true,
+      counTotal: payments.length,
+      message: "Allpayments ",
+      payments,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Erorr in getting products",
+      error: error.message,
+    });
+  }
+};
+
+// get photo
+export const getpaymentPhotoController = async (req, res) => {
+  try {
+    const payment = await paymentModels
+      .findById(req.params.pid)
+      .select("imageData");
+    if (payment.imageData.data) {
+      res.set("Content-type", payment.imageData.contentType);
+      return res.status(200).send(payment.imageData.data);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Erorr while getting photo",
+      error,
+    });
+  }
+};
+// controllers.js
+
+export const verifypaymentController = async (req, res) => {
+  try {
+    const { userid, id } = req.query;
+
+    if (!userid || !id) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid user or payment ID" });
+    }
+
+    // Find the user by user ID
+    const user = await userModels.findOne({ _id: userid });
+
+    // Find the payment by payment ID
+    const payment = await paymentModels.findOne({ _id: id });
+
+    if (!user || !payment) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User or payment not found" });
+    }
+
+    // Update the userModel paid field to 1
+    user.paid = "1";
+
+    // Update the paymentModel verify field to 1
+    payment.verify = "1";
+
+    // Save the updated user and payment
+    await user.save();
+    await payment.save();
+
+    return res
+      .status(200)
+      .json({ success: true, message: "User payment verified" });
+  } catch (error) {
+    console.error("Error updating user payment status:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal server error" });
+  }
+};
+
+//view payment of user with search
+export const searchpaymentController = async (req, res) => {
+  try {
+    const { reg } = req.query;
+
+    if (reg) {
+      const payments = await paymentModels.find({ reg });
+
+      return res.status(200).json({
+        success: true,
+        message: "Payments data fetched successfully",
+        payments,
+      });
+    }
+
+    const allPayments = await paymentModels.find();
+
+    return res.status(200).json({
+      success: true,
+      message: "All payments data fetched successfully",
+      payments: allPayments,
+    });
+  } catch (error) {
+    console.error("Error fetching payments data:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
     });
   }
 };
