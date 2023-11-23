@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import "../../styles/tracker.css";
+import "../../styles/tracker.css";
 import { useEffect } from "react";
 const BMICalculator = () => {
   const [height, setHeight] = useState("");

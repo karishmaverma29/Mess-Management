@@ -1,11 +1,9 @@
-*{
+/* *{
     margin:0%;
     padding: 0%;
     box-sizing: border-box;
 }
-/* body{
-    background-color: rgb(15,15,15)
-} */
+
 .heading h1{
     color:white;
     font-size: 48px;
@@ -129,4 +127,4 @@
     box-shadow:5px 5px 10px black;
     border:1px solid black;
     color:red;
-  }
+  } */
