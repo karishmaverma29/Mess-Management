@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* body{background-image: radial-gradient(circle, #22483d, #024041, #003844, #002e45, #002341, #002043, #001c45, #061745, #071a51, #0a1c5d, #0f1e68, #171f74);} */
 
 body{
   background-color: white;
@@ -24,7 +25,7 @@ body{
   font-size: 17px;
   line-height: 26px;
   text-transform: uppercase;
-  box-shadow: 0 8px 6px -6px gray;
+  box-shadow: 0 8px 6px -6px rgb(209, 202, 202);
   --webkit-box-shadow: 0 8px 6px -6px gray;
   border-bottom: solid gray !important;
 }
@@ -51,7 +52,7 @@ body{
     #434343,
     #000000
   ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #434343, #000000);
+  background: linear-gradient(to right, rgb(67, 67, 67), #103e72);
 }
 
 .footer a {
@@ -93,7 +94,7 @@ body{
 }
 .pnf-btn:hover {
   background-color: black;
-  color: white;
+  color: rgb(252, 245, 245);
 }
 
 
@@ -120,7 +121,7 @@ body{
 }
 .cat-btn:hover {
   background-color: #434343;
-  color: white;
+  color: rgb(235, 225, 225);
 }
 
 
