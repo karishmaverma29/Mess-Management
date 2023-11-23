@@ -1,160 +1,4 @@
-// import React, { useState, useEffect } from "react";
-// import axios from "axios";
-// import Layout from "../../components/Layout/Layout";
-// import { NavLink } from "react-router-dom";
-// const CardLayout = ({ children }) => {
-//   return (
-//     <div className="card">
-//       <div className="card-body">
-//         {children}
-//       </div>
-//     </div>
-//   );
-// };
-    
 
-// const WardenDashboard = () => {
-//   return (
-//     <div>
-//       <h1>Warden Page</h1>
-
-//       <CardLayout>
-//         <NavLink to="/dashboard/warden/manureq">
-//           <button type="button" className="btn btn-primary">
-//             Menu Update Req
-//           </button>
-//         </NavLink>
-//       </CardLayout>
-
-//       <hr />
-
-//       <CardLayout>
-//         <NavLink to="/dashboard/warden/viewcomplain">
-//           <button type="button" className="btn btn-primary">
-//             View Complain
-//           </button>
-//         </NavLink>
-//       </CardLayout>
-
-//       <hr />
-
-//       <CardLayout>
-//         <NavLink to="/dashboard/warden/createnewpoll">
-//           <button type="button" className="btn btn-primary">
-//             Create Poll
-//           </button>
-//         </NavLink>
-//       </CardLayout>
-
-//       <hr />
-
-//       <CardLayout>
-//         <NavLink to="/dashboard/warden/pollresult">
-//           <button type="button" className="btn btn-primary">
-//             Poll Result
-//           </button>
-//         </NavLink>
-//       </CardLayout>
-
-//       <hr />
-
-//       <CardLayout>
-//         <NavLink to="/dashboard/warden/viewfeedback">
-//           <button type="button" className="btn btn-primary">
-//             View Feedback
-//           </button>
-//         </NavLink>
-//       </CardLayout>
-
-//       <hr />
-
-//       <CardLayout>
-//         <NavLink to="/dashboard/warden/viewuser">
-//           <button type="button" className="btn btn-primary">
-//             View User
-//           </button>
-//         </NavLink>
-//       </CardLayout>
-//     </div>
-//   );
-// };
-// export default WardenDashboard;
-
-// import React from "react";
-// import { NavLink } from "react-router-dom";
-// import Layout from "../../components/Layout/Layout";
-
-// const CardLayout = ({ children }) => {
-//   return (
-//     <div className="col-md-4 mb-3"> {/* Use col-md-4 for each card, mb-3 for margin-bottom */}
-//       <div className="card">
-//         <div className="card-body">
-//           {children}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// const WardenDashboard = () => {
-//   return (
-//     <div>
-//       <h1>Warden Page</h1>
-
-//       <div className="row">
-//         <CardLayout>
-//           <NavLink to="/dashboard/warden/manureq">
-//             <button type="button" className="btn btn-primary">
-//               Menu Update Req
-//             </button>
-//           </NavLink>
-//         </CardLayout>
-
-//         <CardLayout>
-//           <NavLink to="/dashboard/warden/viewcomplain">
-//             <button type="button" className="btn btn-primary">
-//               View Complain
-//             </button>
-//           </NavLink>
-//         </CardLayout>
-
-//         <CardLayout>
-//           <NavLink to="/dashboard/warden/createnewpoll">
-//             <button type="button" className="btn btn-primary">
-//               Create Poll
-//             </button>
-//           </NavLink>
-//         </CardLayout>
-
-//         <CardLayout>
-//           <NavLink to="/dashboard/warden/pollresult">
-//             <button type="button" className="btn btn-primary">
-//               Poll Result
-//             </button>
-//           </NavLink>
-//         </CardLayout>
-
-//         <CardLayout>
-//           <NavLink to="/dashboard/warden/viewfeedback">
-//             <button type="button" className="btn btn-primary">
-//               View Feedback
-//             </button>
-//           </NavLink>
-//         </CardLayout>
-
-//         <CardLayout>
-//           <NavLink to="/dashboard/warden/viewuser">
-//             <button type="button" className="btn btn-primary">
-//               View User
-//             </button>
-//           </NavLink>
-//         </CardLayout>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default WardenDashboard;
 
 // import React from "react";
 // import { NavLink } from "react-router-dom";
@@ -163,14 +7,14 @@
 // const CardLayout = ({ to, children }) => {
 //   return (
 //     <div className="col-md-4 mb-3">
-//       <NavLink to={to} style={{ textDecoration: 'none' }}>
-//         <div className="card">
-//           <div className="card-body">
-//             {children}
-//           </div>
+//     <NavLink to={to} style={{ textDecoration: 'none' , color: 'black'}}>
+//       <div className="card">
+//         <div className="card-body">
+//           <p style={{ fontWeight: 'bold', color: 'black' }}>{children}</p>
 //         </div>
-//       </NavLink>
-//     </div>
+//       </div>
+//     </NavLink>
+//   </div>
 //   );
 // };
 
@@ -181,46 +25,38 @@
 
 //       <div className="row">
 //         <CardLayout to="/dashboard/warden/manureq">
-//           <button type="button" className="btn btn-primary">
-//             Menu Update Req
-//           </button>
+//           <p>Menu Update Req</p>
 //         </CardLayout>
 
 //         <CardLayout to="/dashboard/warden/viewcomplain">
-//           <button type="button" className="btn btn-primary">
-//             View Complain
-//           </button>
+//           <p>View Complain</p>
 //         </CardLayout>
 
 //         <CardLayout to="/dashboard/warden/createnewpoll">
-//           <button type="button" className="btn btn-primary">
-//             Create Poll
-//           </button>
+//           <p>Create Poll</p>
 //         </CardLayout>
 
 //         <CardLayout to="/dashboard/warden/pollresult">
-//           <button type="button" className="btn btn-primary">
-//             Poll Result
-//           </button>
+//           <p>Poll Result</p>
 //         </CardLayout>
 
 //         <CardLayout to="/dashboard/warden/viewfeedback">
-//           <button type="button" className="btn btn-primary">
-//             View Feedback
-//           </button>
+//           <p>View Feedback</p>
 //         </CardLayout>
 
 //         <CardLayout to="/dashboard/warden/viewuser">
-//           <button type="button" className="btn btn-primary">
-//             View User
-//           </button>
+//           <p>View User</p>
 //         </CardLayout>
 //       </div>
+//       <hr />
+//       <NavLink to="/dashboard/warden/viewpayments">
+//         <button type="button" className="btn btn-primary">
+//           View payments
+//         </button>
+//       </NavLink>
 //     </div>
 //   );
 // };
-
-
 
 // export default WardenDashboard;
 
@@ -228,51 +64,176 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 
-const CardLayout = ({ to, children }) => {
-  return (
-    <div className="col-md-4 mb-3">
-    <NavLink to={to} style={{ textDecoration: 'none' , color: 'black'}}>
-      <div className="card">
-        <div className="card-body">
-          <p style={{ fontWeight: 'bold', color: 'black' }}>{children}</p>
-        </div>
-      </div>
-    </NavLink>
-  </div>
-  );
-};
-
 const WardenDashboard = () => {
   return (
-    <div>
-      <h1>Warden Page</h1>
-
-      <div className="row">
-        <CardLayout to="/dashboard/warden/manureq">
-          <p>Menu Update Req</p>
-        </CardLayout>
-
-        <CardLayout to="/dashboard/warden/viewcomplain">
-          <p>View Complain</p>
-        </CardLayout>
-
-        <CardLayout to="/dashboard/warden/createnewpoll">
-          <p>Create Poll</p>
-        </CardLayout>
-
-        <CardLayout to="/dashboard/warden/pollresult">
-          <p>Poll Result</p>
-        </CardLayout>
-
-        <CardLayout to="/dashboard/warden/viewfeedback">
-          <p>View Feedback</p>
-        </CardLayout>
-
-        <CardLayout to="/dashboard/warden/viewuser">
-          <p>View User</p>
-        </CardLayout>
+    <Layout>
+      <h1 style={{ textAlign: "center" }}>Warden Page</h1>
+      <div
+        style={{
+          backgroundColor: "#f4f4f4",
+          border: "1px solid #ddd",
+          borderRadius: "10px",
+          padding: "20px 30px",
+          margin: "0 30px",
+          textAlign: "center", // Center-align the content within the card
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap", // Allow items to wrap to the next line
+            justifyContent: "space-around",
+            margin: "5px 0",
+          }}
+        >
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/manureq"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-primary"
+                style={{
+                  width: "100%", // Set the button width to 100%
+                  padding: "10px 20px", // Adjusted padding for a smaller button
+                  boxSizing: "border-box", // Ensure padding is included in the total width
+                }}
+              >
+                Menu Update Req
+              </button>
+            </NavLink>
+          </div>
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/viewcomplain"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-primary"
+                style={{
+                  width: "100%", // Set the button width to 100%
+                  padding: "10px 20px", // Adjusted padding for a smaller button
+                  boxSizing: "border-box", // Ensure padding is included in the total width
+                }}
+              >
+                View Complain
+              </button>
+            </NavLink>
+          </div>
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/createnewpoll"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-primary"
+                style={{
+                  width: "100%", // Set the button width to 100%
+                  padding: "10px 20px", // Adjusted padding for a smaller button
+                  boxSizing: "border-box", // Ensure padding is included in the total width
+                }}
+              >
+                Create Poll
+              </button>
+            </NavLink>
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap", // Allow items to wrap to the next line
+            justifyContent: "space-around",
+            margin: "5px 0",
+          }}
+        >
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/pollresult"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-primary"
+                style={{
+                  width: "100%", // Set the button width to 100%
+                  padding: "10px 20px", // Adjusted padding for a smaller button
+                  boxSizing: "border-box", // Ensure padding is included in the total width
+                }}
+              >
+                Poll Result
+              </button>
+            </NavLink>
+          </div>
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/viewfeedback"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-primary"
+                style={{
+                  width: "100%", // Set the button width to 100%
+                  padding: "10px 20px", // Adjusted padding for a smaller button
+                  boxSizing: "border-box", // Ensure padding is included in the total width
+                }}
+              >
+                View Feedback
+              </button>
+            </NavLink>
+          </div>
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/viewuser"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-primary"
+                style={{
+                  width: "100%", // Set the button width to 100%
+                  padding: "10px 20px", // Adjusted padding for a smaller button
+                  boxSizing: "border-box", // Ensure padding is included in the total width
+                }}
+              >
+                View User
+              </button>
+            </NavLink>
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap", // Allow items to wrap to the next line
+            justifyContent: "space-around",
+            margin: "5px 0",
+          }}
+        >
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/viewpayments"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-primary"
+                style={{
+                  width: "100%", // Set the button width to 100%
+                  padding: "10px 20px", // Adjusted padding for a smaller button
+                  boxSizing: "border-box", // Ensure padding is included in the total width
+                }}
+              >
+                View Payments
+              </button>
+            </NavLink>
+          </div>
+          {/* Add more buttons in the same way */}
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

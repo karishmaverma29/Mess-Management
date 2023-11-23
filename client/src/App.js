@@ -23,6 +23,12 @@ import CreatenewPoll from "./pages/Polling/CreateNewpoll";
 import Feedback from "./pages/feedback/feedback";
 import Viewfeedback from "./pages/feedback/viewfeedback";
 import Viewuser from "./pages/user/viewuser";
+import Nutrition from "./pages/Nutrition/nutrition";
+import Meal from "./pages/recipe/meal";
+import Tracker from "./pages/tracker/tracker";
+import Profile from "./pages/user/profile";
+import Payment from "./pages/payment/Payment";
+import Viewpayments from "./pages/payment/viewpayments";
 
 function App() {
   return (
@@ -60,8 +66,17 @@ function App() {
           path="/dashboard/manager/updatemenu"
           element={<Messmenu />}
         ></Route>
+        <Route path="/dashboard/manager/recipe" element={<Meal />}></Route>
 
+        <Route path="/dashboard/student/tracker" element={<Tracker />}></Route>
+        {/* profile  */}
+        <Route path="/dashboard/student/profile" element={<Profile />}></Route>
         {/* poll routes  */}
+        <Route
+          path="/dashboard/student/profile/payment"
+          element={<Payment />}
+        ></Route>
+        {/* payment route */}
         <Route
           path="/dashboard/warden/createnewpoll"
           element={<CreatenewPoll />}
@@ -78,6 +93,10 @@ function App() {
           path="/dashboard/warden/pollresult"
           element={<PollResult />}
         ></Route>
+        <Route
+          path="/dashboard/warden/viewpayments"
+          element={<Viewpayments />}
+        ></Route>
         <Route path="/dashboard/warden/viewuser" element={<Viewuser />}></Route>
         <Route
           path="/reset_password/:id/:token"
@@ -86,6 +105,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<Pagenotfound />} />
+        <Route path="/dashboard/student/nutrition" element={<Nutrition />} />
       </Routes>
     </>
   );

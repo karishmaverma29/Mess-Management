@@ -14,6 +14,13 @@ import {
   blockUserController,
   unblockUserController,
   viewFilteredUsersController,
+  viewSingleuserController,
+  updatesingleuserController,
+  paymentController,
+  getallpayment,
+  getpaymentPhotoController,
+  verifypaymentController,
+  searchpaymentController,
 } from "./../controllers/generalController.js";
 import {
   ApproveMenuReq,
@@ -21,6 +28,8 @@ import {
   menureqsend,
   viewMenuRequests,
 } from "../controllers/generalController.js";
+
+import formidable from "express-formidable";
 
 const router = express.Router();
 
@@ -45,6 +54,9 @@ router.delete("/deletereq", Deletereq);
 //approve menu req
 router.put("/approvemenureq", ApproveMenuReq);
 
+//for payment
+router.post("/payment/:userid", formidable(), paymentController);
+
 //create new poll
 router.post("/createnewpoll", createNewPollController);
 //create poll
@@ -57,4 +69,13 @@ router.get("/viewuser", viewAlluserController);
 router.post("/blockuser", blockUserController);
 router.post("/unblockuser", unblockUserController);
 router.get("/viewFilteredUsers", viewFilteredUsersController);
+router.get("/myprofile", viewSingleuserController);
+router.put("/updateProfile/:userId", updatesingleuserController);
+router.post("/payment/:userid", formidable(), paymentController);
+//get payments
+router.get("/getpayment", getallpayment); //get photo
+router.get("/paymentReceipt/:pid", getpaymentPhotoController);
+router.put("/verifypayment", verifypaymentController);
+router.get("/searchgetpayment", searchpaymentController);
+
 export default router;
