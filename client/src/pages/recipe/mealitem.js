@@ -1,8 +1,6 @@
 
-
-
 import React from "react";
-import "../../styles/Recipe.css";
+// import "../../styles/Recipe.css";
 
 const Mealitem = (getMeal) => {
     console.log(getMeal.data);
