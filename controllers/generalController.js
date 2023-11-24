@@ -8,6 +8,7 @@ import pollModels from "../models/pollModels.js";
 import userModels from "../models/userModels.js";
 import paymentModels from "../models/paymentModels.js";
 import fs from "fs";
+import Item from "../models/expensesModels.js";
 
 //for menu approval req
 export const menureqsend = async (req, res) => {
@@ -499,6 +500,56 @@ export const paymentController = async (req, res) => {
       error,
       message: "Error in uploading photo",
     });
+  }
+};
+
+
+//for expenses 
+
+export const expensesController = async (req, res) => {
+  try {
+    // Extract data from the request body
+    const { food, general, dairy, spoon, plates, glass, description } = req.body;
+
+    // Create a new item document using the Item model
+    const newItem = new Item({
+      food,
+      general,
+      dairy,
+      spoon,
+      plates,
+      glass,
+      description,
+    });
+
+    // Save the new item to the database
+    await newItem.save();
+
+    // Respond with a success message
+    res.status(201).json({
+      success: true,
+      message: 'Expenses data saved successfully',
+      newItem,
+    });
+  } catch (error) {
+    // Handle errors
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      error,
+      message: 'Error saving expenses data',
+    });
+  }
+}
+// all expenses data to warden
+
+export const viewAllexpensesController = async (req, res) => {
+  try {
+    const AllexpensesData = await Item.find({});
+    res.status(200).json(AllexpensesData);
+  } catch (error) {
+    console.error("Error fetching all expenses data:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 

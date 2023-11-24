@@ -48,7 +48,7 @@ const ManagerDashboard = () => {
             >
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-outline-primary"
                 style={{
                   width: "100%", // Set the button width to 100%
                   padding: "10px 20px", // Adjusted padding for a smaller button
@@ -66,7 +66,7 @@ const ManagerDashboard = () => {
             >
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-outline-primary"
                 style={{
                   width: "100%", // Set the button width to 100%
                   padding: "10px 20px", // Adjusted padding for a smaller button

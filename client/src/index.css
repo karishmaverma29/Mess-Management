@@ -12,10 +12,6 @@ body{
 }
 
 
-body{
-  background-color: white;
-}
-
 /* font-family: 'Poppins', sans-serif; */
 /* font-family: 'Playfair Display', serif; */
 
@@ -52,6 +48,7 @@ body{
     #434343,
     #000000
   ); /* Chrome 10-25, Safari 5.1-6 */
+  
   background: linear-gradient(to right, rgb(67, 67, 67), #103e72);
 }
 
