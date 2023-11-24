@@ -17,6 +17,10 @@ import {
   viewSingleuserController,
   updatesingleuserController,
   paymentController,
+  getallpayment,
+  getpaymentPhotoController,
+  verifypaymentController,
+  searchpaymentController,
   expensesController,
   viewAllexpensesController,
 } from "./../controllers/generalController.js";
@@ -53,13 +57,12 @@ router.delete("/deletereq", Deletereq);
 router.put("/approvemenureq", ApproveMenuReq);
 
 //for payment
-router.post("/payment/:userid", formidable(),paymentController);
+router.post("/payment/:userid", formidable(), paymentController);
 
 //for accountant expenses
 router.post("/expenses", expensesController);
 
 router.get("/viewexpenses", viewAllexpensesController);
-
 
 
 //create new poll
@@ -76,4 +79,11 @@ router.post("/unblockuser", unblockUserController);
 router.get("/viewFilteredUsers", viewFilteredUsersController);
 router.get("/myprofile", viewSingleuserController);
 router.put("/updateProfile/:userId", updatesingleuserController);
+router.post("/payment/:userid", formidable(), paymentController);
+//get payments
+router.get("/getpayment", getallpayment); //get photo
+router.get("/paymentReceipt/:pid", getpaymentPhotoController);
+router.put("/verifypayment", verifypaymentController);
+router.get("/searchgetpayment", searchpaymentController);
+
 export default router;

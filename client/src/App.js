@@ -37,6 +37,7 @@ import Viewexpenses from "./pages/expenses/viewexpenses";
 
 
 
+import Viewpayments from "./pages/payment/viewpayments";
 
 function App() {
   return (
@@ -80,7 +81,10 @@ function App() {
         {/* profile  */}
         <Route path="/dashboard/student/profile" element={<Profile />}></Route>
         {/* poll routes  */}
-        <Route path="/dashboard/student/profile/payment" element={<Payment/>}></Route>
+        <Route
+          path="/dashboard/student/profile/payment"
+          element={<Payment />}
+        ></Route>
         {/* payment route */}
 
 
@@ -108,6 +112,10 @@ function App() {
         <Route
           path="/dashboard/warden/pollresult"
           element={<PollResult />}
+        ></Route>
+        <Route
+          path="/dashboard/warden/viewpayments"
+          element={<Viewpayments />}
         ></Route>
         <Route path="/dashboard/warden/viewuser" element={<Viewuser />}></Route>
         <Route

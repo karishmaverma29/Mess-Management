@@ -33,29 +33,16 @@ const Viewexpenses = () => {
   return (
     <div>
 
-{/* <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-      {Allexpenses.map((item, index) => (
-        <div key={item._id} style={{ width: '30%', margin: '10px', border: '1px solid #000', padding: '10px', boxShadow: '12px 6px 15px rgba(0, 0, 0, 0.1)' }}>
-          <h4 style={{ fontWeight: "bold" }}>Receipt Count: {receiptCount + index +1}</h4>
-          <h4 style={{ fontWeight: "bold" }}>Food: {item.food}</h4>
-          <h4 style={{ fontWeight: "bold" }}>General: {item.general}</h4>
-          <h4 style={{ fontWeight: "bold" }}>Dairy: {item.dairy}</h4>
-          <h4 style={{ fontWeight: "bold" }}>Spoon: {item.spoon}</h4>
-          <h4 style={{ fontWeight: "bold" }}>Plates: {item.plates}</h4>
-          <h4 style={{ fontWeight: "bold" }}>Glass: {item.glass}</h4>
-          <h4 style={{ fontWeight: "bold" }}>Description: {item.description}</h4>
-          <h4 style={{ fontWeight: "bold" }}>Date: {new Date(item.createdAt).toLocaleDateString()}</h4>
-          <hr />
-        </div>
-      ))}
-    </div> */}
-<h2 style={{ alignItems: 'center' }}>Expenses </h2>
+
+<h1 style={{ textAlign: 'center' , fontWeight: 'bold', textDecoration: 'underline' }}>Expenses</h1>
+
 <div style={{ display: 'flex', flexWrap: 'wrap' }}>
   
   {Allexpenses.map((item, index) => (
-    <div key={item._id} style={{ width: '30%', margin: '10px', border: '1px solid #000', padding: '10px', boxShadow: '12px 6px 15px rgba(0, 0, 0, 0.1)' }}>
+    <div key={item._id} style={{ width: '30%', margin: '10px', border: '1px solid #000', padding: '10px', boxShadow: '12px 6px 15px rgba(0, 0, 0, 0.2)' }}>
+        <h4 style={{ fontWeight: "bold" }}>Receipt No.: {receiptCount + index + 1}</h4>
       <div style={{ marginBottom: '20px', border: '1px solid #000', padding: '10px' }}>
-        <h4 style={{ fontWeight: "bold" }}>Receipt Count: {receiptCount + index + 1}</h4>
+        
         <h4 style={{ fontWeight: "bold" }}>Food: {item.food}</h4>
         <h4 style={{ fontWeight: "bold" }}>General: {item.general}</h4>
         <h4 style={{ fontWeight: "bold" }}>Dairy: {item.dairy}</h4>
