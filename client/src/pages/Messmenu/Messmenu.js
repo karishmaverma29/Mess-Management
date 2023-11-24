@@ -112,22 +112,43 @@ const Messmenu = () => {
     <Layout>
       <div>
         <h2>Weekly Menu</h2>
-        <table>
+        {/* Apply border styling to the table element */}
+        <table
+          style={{
+            borderCollapse: "collapse",
+            width: "100%",
+            border: "2px solid black",
+          }}
+        >
           <thead>
             <tr>
-              <th>Day</th>
-              <th>Breakfast</th>
-              <th>Lunch</th>
-              <th>Dinner</th>
+              <th style={{ border: "1px solid black", padding: "8px" }}>Day</th>
+              <th style={{ border: "1px solid black", padding: "8px" }}>
+                Breakfast
+              </th>
+              <th style={{ border: "1px solid black", padding: "8px" }}>
+                Lunch
+              </th>
+              <th style={{ border: "1px solid black", padding: "8px" }}>
+                Dinner
+              </th>
             </tr>
           </thead>
           <tbody>
             {menuData.map((menu) => (
               <tr key={menu.dayOfWeek}>
-                <td>{menu.dayOfWeek}</td>
-                <td>{menu.breakfast}</td>
-                <td>{menu.lunch}</td>
-                <td>{menu.dinner}</td>
+                <td style={{ border: "1px solid black", padding: "8px" }}>
+                  {menu.dayOfWeek}
+                </td>
+                <td style={{ border: "1px solid black", padding: "8px" }}>
+                  {menu.breakfast}
+                </td>
+                <td style={{ border: "1px solid black", padding: "8px" }}>
+                  {menu.lunch}
+                </td>
+                <td style={{ border: "1px solid black", padding: "8px" }}>
+                  {menu.dinner}
+                </td>
               </tr>
             ))}
           </tbody>

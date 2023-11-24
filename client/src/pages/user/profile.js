@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "../../styles/profile.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { useAuth } from "../../context/auth";
@@ -12,10 +11,9 @@ const Profile = () => {
   const [singleUser, setSingleUser] = useState(null);
   const [phone, setPhone] = useState("");
   const [year, setYear] = useState("");
-  const [loading, setLoading] = useState(true); // New state variable for loading
+  const [loading, setLoading] = useState(true);
 
   const currUser = auth.user;
-  //getting single user data from backend
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +34,7 @@ const Profile = () => {
     };
 
     fetchData();
-  }, [auth.user]); // Include auth.user in the dependency array
+  }, [auth.user]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -57,33 +55,37 @@ const Profile = () => {
       );
       console.log("Profile data saved:", response.data);
       window.alert("profile updated successfully");
-      // Show success alert
-      console.log("Setting showAlert to true");
     } catch (error) {
-      // Show error alert
       window.alert("Profile is not updated");
       console.error("Error saving profile data:", error);
     }
   };
 
   const handleYearChange = (e) => {
-    // Update the state with the new value entered in the input field
     setYear(e.target.value);
   };
 
   const handlePhoneChange = (e) => {
-    // Update the state with the new value entered in the input field
     setPhone(e.target.value);
   };
 
   return (
-    <div>
-      {loading ? ( // Display a loading indicator while data is being fetched
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="container bootstrap snippets bootdey">
-          <h1 className="text-primary">Edit Profile</h1>
-          <hr />
+        <div
+          className="container bootstrap snippets bootdey"
+          style={{ maxWidth: "800px", margin: "50px auto" }}
+        >
+          <h1 className="text-primary text-center mb-4">Edit Profile</h1>
           <div className="row">
             <div className="col-md-3">
               <div className="text-center">
@@ -91,9 +93,9 @@ const Profile = () => {
                   src="https://bootdey.com/img/Content/avatar/avatar7.png"
                   className="avatar img-circle img-thumbnail"
                   alt="avatar"
+                  style={{ maxWidth: "100%", height: "auto" }}
                 />
-                <h6>Upload a different photo...</h6>
-
+                <h6 className="mt-3">Upload a different photo...</h6>
                 <input
                   type="file"
                   className="form-control"
@@ -104,57 +106,81 @@ const Profile = () => {
 
             <div className="col-md-9 personal-info">
               <h2>Personal info</h2>
-
               <form className="form-horizontal" role="form">
-                <div className="form-group">
-                  <label className="col-lg-3 control-label">Name</label>
+                <div className="form-group mb-3">
+                  <label
+                    className="col-lg-3 control-label"
+                    style={{ fontWeight: "bold" }}
+                  >
+                    Name
+                  </label>
                   <div className="col-lg-8">
                     <input
-                      className="form-control"
+                      className="form-control form-control-lg"
                       type="text"
                       value={currUser.name}
                       readOnly
                     />
                   </div>
                 </div>
-                <div className="form-group">
-                  <label className="col-lg-3 control-label">Reg No.</label>
+                <div className="form-group mb-3">
+                  <label
+                    className="col-lg-3 control-label"
+                    style={{ fontWeight: "bold" }}
+                  >
+                    Reg No.
+                  </label>
                   <div className="col-lg-8">
                     <input
-                      className="form-control"
+                      className="form-control form-control-lg"
                       type="text"
                       value={singleUser ? singleUser.reg : ""}
                       readOnly
                     />
                   </div>
                 </div>
-                <div className="form-group">
-                  <label className="col-lg-3 control-label">Email</label>
+                <div className="form-group mb-3">
+                  <label
+                    className="col-lg-3 control-label"
+                    style={{ fontWeight: "bold" }}
+                  >
+                    Email
+                  </label>
                   <div className="col-lg-8">
                     <input
-                      className="form-control"
+                      className="form-control form-control-lg"
                       type="text"
                       value={currUser.email}
                       readOnly
                     />
                   </div>
                 </div>
-                <div className="form-group">
-                  <label className="col-lg-3 control-label">Phone No.:</label>
+                <div className="form-group mb-3">
+                  <label
+                    className="col-lg-3 control-label"
+                    style={{ fontWeight: "bold" }}
+                  >
+                    Phone No.:
+                  </label>
                   <div className="col-lg-8">
                     <input
-                      className="form-control"
+                      className="form-control form-control-lg"
                       type="text"
                       value={phone}
-                      onChange={handlePhoneChange} // Attach the onChange event handler
+                      onChange={handlePhoneChange}
                     />
                   </div>
                 </div>
-                <div className="form-group">
-                  <label className="col-lg-3 control-label">Year</label>
+                <div className="form-group mb-3">
+                  <label
+                    className="col-lg-3 control-label"
+                    style={{ fontWeight: "bold" }}
+                  >
+                    Year
+                  </label>
                   <div className="col-lg-8">
                     <select
-                      className="form-control"
+                      className="form-control form-control-lg"
                       value={year}
                       onChange={handleYearChange}
                     >
@@ -165,11 +191,16 @@ const Profile = () => {
                     </select>
                   </div>
                 </div>
-                <div className="form-group">
-                  <label className="col-lg-3 control-label">Hostel</label>
+                <div className="form-group mb-3">
+                  <label
+                    className="col-lg-3 control-label"
+                    style={{ fontWeight: "bold" }}
+                  >
+                    Hostel
+                  </label>
                   <div className="col-lg-8">
                     <input
-                      className="form-control"
+                      className="form-control form-control-lg"
                       type="text"
                       value={currUser.hostel}
                       readOnly
@@ -181,7 +212,7 @@ const Profile = () => {
                   <div className="col-lg-offset-3 col-lg-8">
                     <button
                       type="button"
-                      className="btn btn-primary"
+                      className="btn btn-primary btn-lg"
                       onClick={handleSave}
                     >
                       Save
@@ -190,16 +221,28 @@ const Profile = () => {
                 </div>
 
                 <NavLink to="/dashboard/student/profile/payment">
-                  <button type="button" className="btn btn-danger">
+                  <button type="button" className="btn btn-danger btn-lg">
                     Payment
                   </button>
                 </NavLink>
                 {singleUser && singleUser.paid === "1" ? (
-                  <span style={{ margin: "0 10px", fontWeight: "bold" }}>
+                  <span
+                    style={{
+                      margin: "0 10px",
+                      fontWeight: "bold",
+                      fontSize: "1.2rem",
+                    }}
+                  >
                     Status: Paid{singleUser.verified ? " and Verified" : ""}
                   </span>
                 ) : (
-                  <span style={{ margin: "0 10px", fontWeight: "bold" }}>
+                  <span
+                    style={{
+                      margin: "0 10px",
+                      fontWeight: "bold",
+                      fontSize: "1.2rem",
+                    }}
+                  >
                     Status: Unpaid
                   </span>
                 )}
@@ -208,7 +251,6 @@ const Profile = () => {
           </div>
         </div>
       )}
-      <hr />
     </div>
   );
 };
