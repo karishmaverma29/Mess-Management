@@ -1,58 +1,196 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Layout from "../../components/Layout/Layout";
+
+import React from "react";
 import { NavLink } from "react-router-dom";
+import Layout from "../../components/Layout/Layout";
+
 const WardenDashboard = () => {
   return (
     <Layout>
-      <h1>warden Page</h1>
-      <NavLink to="/dashboard/warden/manureq">
-        <button type="button" className="btn btn-primary">
-          menu update req
-        </button>
-      </NavLink>
-      <hr />
-      <NavLink to="/dashboard/warden/viewcomplain">
-        <button type="button" className="btn btn-primary">
-          View Complain
-        </button>
-      </NavLink>
-      <hr />
-      <NavLink to="/dashboard/warden/createnewpoll">
-        <button type="button" className="btn btn-primary">
-          create poll
-        </button>
-      </NavLink>
-      <hr />
-      <NavLink to="/dashboard/warden/pollresult">
-        <button type="button" className="btn btn-primary">
-          Poll result
-        </button>
-      </NavLink>
-      <hr />
-      <NavLink to="/dashboard/warden/viewfeedback">
-        <button type="button" className="btn btn-primary">
-          View feedback
-        </button>
-      </NavLink>
-      <hr />
-      <NavLink to="/dashboard/warden/viewuser">
-        <button type="button" className="btn btn-primary">
-          View User
-        </button>
-      </NavLink>
-      <hr />
-      <NavLink to="/dashboard/warden/viewexpenses">
-        <button type="button" className="btn btn-primary">
-          View Expenses
-          </button>
-      </NavLink>
-      <hr />
-      <NavLink to="/dashboard/warden/viewpayments">
-        <button type="button" className="btn btn-primary">
-          View payments
-        </button>
-      </NavLink>
+      <h1 style={{ textAlign: "center" }}>Warden Page</h1>
+      <div
+        style={{
+          backgroundColor: "#f4f4f4",
+          border: "1px solid #ddd",
+          borderRadius: "10px",
+          padding: "20px 30px",
+          margin: "0 30px",
+          textAlign: "center", 
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-around",
+            margin: "5px 0",
+          }}
+        >
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/manureq"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-outline-primary"
+                style={{
+                  width: "100%", 
+                  padding: "10px 20px", 
+                  boxSizing: "border-box", 
+                }}
+              >
+                Menu Update Req
+              </button>
+            </NavLink>
+          </div>
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/viewcomplain"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-outline-primary"
+                style={{
+                  width: "100%", 
+                  padding: "10px 20px", 
+                  boxSizing: "border-box", 
+                }}
+              >
+                View Complain
+              </button>
+            </NavLink>
+          </div>
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/createnewpoll"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-outline-primary"
+                style={{
+                  width: "100%", 
+                  padding: "10px 20px", 
+                  boxSizing: "border-box", 
+                }}
+              >
+                Create Poll
+              </button>
+            </NavLink>
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap", 
+            justifyContent: "space-around",
+            margin: "5px 0",
+          }}
+        >
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/pollresult"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-outline-primary"
+                style={{
+                  width: "100%", 
+                  padding: "10px 20px", 
+                  boxSizing: "border-box", 
+                }}
+              >
+                Poll Result
+              </button>
+            </NavLink>
+          </div>
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/viewfeedback"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-outline-primary"
+                style={{
+                  width: "100%", 
+                  padding: "10px 20px", 
+                  boxSizing: "border-box", 
+                }}
+              >
+                View Feedback
+              </button>
+            </NavLink>
+          </div>
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/viewuser"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-outline-primary"
+                style={{
+                  width: "100%", 
+                  padding: "10px 20px", 
+                  boxSizing: "border-box", 
+                }}
+              >
+                View User
+              </button>
+            </NavLink>
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap", 
+            justifyContent: "space-around",
+            margin: "5px 0",
+          }}
+        >
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/viewpayments"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-outline-primary"
+                style={{
+                  width: "100%", 
+                  padding: "10px 20px",
+                  boxSizing: "border-box",
+                }}
+              >
+                View Payments
+              </button>
+            </NavLink>
+          </div>
+
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/viewexpenses"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-outline-primary"
+                style={{
+                  width: "100%", 
+                  padding: "10px 20px",
+                  boxSizing: "border-box",
+                }}
+              >
+                View Expenses
+              </button>
+            </NavLink>
+          </div>
+        
+        </div>
+      </div>
     </Layout>
   );
 };

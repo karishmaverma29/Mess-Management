@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../../styles/Nutrition.css";
+// import "../../styles/Nutrition.css";
 import NutritionCard from "./NutritionItem.js";
 
 const Nutrition = () => {

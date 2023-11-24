@@ -92,8 +92,9 @@ const Payment = () => {
 
           {/* Upload File Input */}
 
+
           <div className="mb-3">
-            <label className="btn btn-outline-secondary col-md-12">
+            <label className="btn btn-outline-secondary col-md-12" style={{marginTop:"20px"}}>
               {photo ? photo.name : "Upload Photo"}
               <input
                 type="file"
