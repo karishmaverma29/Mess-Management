@@ -1,4 +1,3 @@
-
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
@@ -14,7 +13,7 @@ const WardenDashboard = () => {
           borderRadius: "10px",
           padding: "20px 30px",
           margin: "0 30px",
-          textAlign: "center", 
+          textAlign: "center",
         }}
       >
         <div
@@ -34,9 +33,9 @@ const WardenDashboard = () => {
                 type="button"
                 className="btn btn-outline-primary"
                 style={{
-                  width: "100%", 
-                  padding: "10px 20px", 
-                  boxSizing: "border-box", 
+                  width: "100%",
+                  padding: "10px 20px",
+                  boxSizing: "border-box",
                 }}
               >
                 Menu Update Req
@@ -52,9 +51,9 @@ const WardenDashboard = () => {
                 type="button"
                 className="btn btn-outline-primary"
                 style={{
-                  width: "100%", 
-                  padding: "10px 20px", 
-                  boxSizing: "border-box", 
+                  width: "100%",
+                  padding: "10px 20px",
+                  boxSizing: "border-box",
                 }}
               >
                 View Complain
@@ -70,9 +69,9 @@ const WardenDashboard = () => {
                 type="button"
                 className="btn btn-outline-primary"
                 style={{
-                  width: "100%", 
-                  padding: "10px 20px", 
-                  boxSizing: "border-box", 
+                  width: "100%",
+                  padding: "10px 20px",
+                  boxSizing: "border-box",
                 }}
               >
                 Create Poll
@@ -83,7 +82,7 @@ const WardenDashboard = () => {
         <div
           style={{
             display: "flex",
-            flexWrap: "wrap", 
+            flexWrap: "wrap",
             justifyContent: "space-around",
             margin: "5px 0",
           }}
@@ -97,9 +96,9 @@ const WardenDashboard = () => {
                 type="button"
                 className="btn btn-outline-primary"
                 style={{
-                  width: "100%", 
-                  padding: "10px 20px", 
-                  boxSizing: "border-box", 
+                  width: "100%",
+                  padding: "10px 20px",
+                  boxSizing: "border-box",
                 }}
               >
                 Poll Result
@@ -115,9 +114,9 @@ const WardenDashboard = () => {
                 type="button"
                 className="btn btn-outline-primary"
                 style={{
-                  width: "100%", 
-                  padding: "10px 20px", 
-                  boxSizing: "border-box", 
+                  width: "100%",
+                  padding: "10px 20px",
+                  boxSizing: "border-box",
                 }}
               >
                 View Feedback
@@ -133,9 +132,9 @@ const WardenDashboard = () => {
                 type="button"
                 className="btn btn-outline-primary"
                 style={{
-                  width: "100%", 
-                  padding: "10px 20px", 
-                  boxSizing: "border-box", 
+                  width: "100%",
+                  padding: "10px 20px",
+                  boxSizing: "border-box",
                 }}
               >
                 View User
@@ -146,7 +145,7 @@ const WardenDashboard = () => {
         <div
           style={{
             display: "flex",
-            flexWrap: "wrap", 
+            flexWrap: "wrap",
             justifyContent: "space-around",
             margin: "5px 0",
           }}
@@ -160,7 +159,7 @@ const WardenDashboard = () => {
                 type="button"
                 className="btn btn-outline-primary"
                 style={{
-                  width: "100%", 
+                  width: "100%",
                   padding: "10px 20px",
                   boxSizing: "border-box",
                 }}
@@ -179,7 +178,7 @@ const WardenDashboard = () => {
                 type="button"
                 className="btn btn-outline-primary"
                 style={{
-                  width: "100%", 
+                  width: "100%",
                   padding: "10px 20px",
                   boxSizing: "border-box",
                 }}
@@ -188,7 +187,25 @@ const WardenDashboard = () => {
               </button>
             </NavLink>
           </div>
-        
+
+          <div style={{ width: "30%", marginBottom: "10px" }}>
+            <NavLink
+              to="/dashboard/warden/createnotice"
+              style={{ textDecoration: "none" }}
+            >
+              <button
+                type="button"
+                className="btn btn-outline-primary"
+                style={{
+                  width: "100%",
+                  padding: "10px 20px",
+                  boxSizing: "border-box",
+                }}
+              >
+                CreateNotice
+              </button>
+            </NavLink>
+          </div>
         </div>
       </div>
     </Layout>
