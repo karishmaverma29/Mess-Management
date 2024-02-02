@@ -1,6 +1,22 @@
-import React, { useState } from "react";
+import "./CreateNewpoll.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlus,
+  faBolt,
+  faTrashAlt,
+  faSpider,
+} from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import axios from "axios";
+// import { v4 as uuidv4 } from "uuid";
+import Slide from "@material-ui/core/Slide";
+import TextField from "@material-ui/core/TextField";
+
+import React from "react";
+
 import { useNavigate } from "react-router-dom";
+const showError = (value, error) => value.trim().length === 0 && error;
 
 const CreatenewPoll = () => {
   const navigate = useNavigate();
@@ -50,95 +66,91 @@ const CreatenewPoll = () => {
   };
 
   return (
-    <div style={{ textAlign: "center", maxWidth: "400px", margin: "auto" }}>
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          backgroundColor: "#fff",
-          borderRadius: "8px",
-          padding: "20px",
-          boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <label
-          htmlFor="question"
-          style={{ display: "block", marginBottom: "8px" }}
-        >
-          Poll Question:
-        </label>
-        <input
-          type="text"
-          id="question"
-          name="question"
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          required
-          style={{
-            width: "100%",
-            padding: "8px",
-            marginBottom: "16px",
-            boxSizing: "border-box",
-          }}
-        />
+    <div className="ui-outer ">
+      <div className="ui-container py-5 px-5">
+        <form onSubmit={handleSubmit} autoComplete="off">
+          <div className="mx-auto">
+            <div className="d-flex justify-content-between flex-column flex-md-row align-items-baseline">
+              <div>
+                <h3>Create Poll</h3>
+                <p className="mt-4 mb-0 text-large text-secondary font-medium">
+                  Complete below fields to create a poll
+                </p>
+              </div>
+            </div>
+            <div className="mt-4">
+              <div className="d-flex flex-column">
+                <label className="mb-3 w-100 font-weight-bold content-text">
+                  Poll Question
+                </label>
+                <TextField
+                  type="text"
+                  id="question"
+                  name="question"
+                  value={question}
+                  onChange={(e) => setQuestion(e.target.value)}
+                  required
+                  className=" py-3 rounded-lg px-3 bg-light inputfield focus-shadow  focus-outline-none  border "
+                  placeholder="Enter your question here..."
+                />
+              </div>
 
-        <label
-          htmlFor="options"
-          style={{ display: "block", marginBottom: "8px" }}
-        >
-          Options:
-        </label>
-        {options.map((option, index) => (
-          <div key={index} style={{ marginBottom: "16px" }}>
-            <input
-              type="text"
-              value={option.option}
-              onChange={(e) => handleOptionChange(index, e.target.value)}
-              required
-              style={{
-                width: "calc(100% - 40px)",
-                padding: "8px",
-                boxSizing: "border-box",
-              }}
-            />
-            <button
-              type="button"
-              onClick={() => removeOption(index)}
-              style={{ marginLeft: "10px", padding: "8px" }}
-            >
-              Remove
-            </button>
+              {options.map((option, index) => (
+                <div className="options mt-2 flex-column " key={index}>
+                  <div className=" mb-3">
+                    <div className="d-flex flex-column">
+                      <label className="mb-3 w-100 content-text font-weight-bold">
+                        Option {index + 1}
+                      </label>
+                      <div className="">
+                        <TextField
+                          name="options"
+                          className=" py-3 rounded-lg px-3 bg-light inputfield focus-shadow  focus-outline-none  border "
+                          placeholder={"Option" + (index + 1)}
+                          value={option.option}
+                          onChange={(e) =>
+                            handleOptionChange(index, e.target.value)
+                          }
+                          required
+                        />
+                        <button
+                          hidden={options.length === 1}
+                          onClick={() => removeOption(index)}
+                          className=" delete ml-2"
+                        >
+                          <FontAwesomeIcon
+                            className=" text-danger"
+                            icon={faTrashAlt}
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              <button
+                type="button"
+                onClick={addOption}
+                className="px-5 py-3  bg-dark rounded-lg font-weight-bold  border-0 text-white "
+              >
+                <span className="mr-3">
+                  Add another option
+                  <FontAwesomeIcon className="ml-2" icon={faPlus} />
+                </span>
+              </button>
+            </div>
+            <div className=" mt-5 pt-3 ">
+              <button
+                type="submit"
+                className="px-5 py-3 bg-success text-white font-weight-bold border-0 rounded-lg"
+              >
+                <FontAwesomeIcon className="mr-2" icon={faBolt} />
+                Create your poll
+              </button>
+            </div>
           </div>
-        ))}
-        <button
-          type="button"
-          onClick={addOption}
-          style={{
-            backgroundColor: "#4caf50",
-            color: "#fff",
-            padding: "10px",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-            marginRight: "10px",
-          }}
-        >
-          Add Option
-        </button>
-
-        <button
-          type="submit"
-          style={{
-            backgroundColor: "#4caf50",
-            color: "#fff",
-            padding: "10px",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
-        >
-          Create Poll
-        </button>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

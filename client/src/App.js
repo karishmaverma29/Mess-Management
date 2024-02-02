@@ -28,7 +28,12 @@ import Meal from "./pages/recipe/meal";
 import Tracker from "./pages/tracker/tracker";
 import Profile from "./pages/user/profile";
 import Payment from "./pages/payment/Payment";
+import Expenses from "./pages/expenses/Expenses";
+
+import Viewexpenses from "./pages/expenses/viewexpenses";
+
 import Viewpayments from "./pages/payment/viewpayments";
+import Createnotice from "./pages/Admin/Notice/Createnotice";
 
 function App() {
   return (
@@ -77,6 +82,17 @@ function App() {
           element={<Payment />}
         ></Route>
         {/* payment route */}
+
+        {/* for accountant expenses */}
+        <Route
+          path="/dashboard/accountant/expenses"
+          element={<Expenses />}
+        ></Route>
+        <Route
+          path="/dashboard/warden/viewexpenses"
+          element={<Viewexpenses />}
+        ></Route>
+
         <Route
           path="/dashboard/warden/createnewpoll"
           element={<CreatenewPoll />}
@@ -98,6 +114,10 @@ function App() {
           element={<Viewpayments />}
         ></Route>
         <Route path="/dashboard/warden/viewuser" element={<Viewuser />}></Route>
+        <Route
+          path="/dashboard/warden/createnotice"
+          element={<Createnotice />}
+        ></Route>
         <Route
           path="/reset_password/:id/:token"
           element={<ResetPassword />}
