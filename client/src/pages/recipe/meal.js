@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "../../styles/Recipe.css";
+// import "../../styles/Recipe.css";
 import Mealitem from './mealitem';
 const Meal = () => {
     const[search,setSearch]=useState("");

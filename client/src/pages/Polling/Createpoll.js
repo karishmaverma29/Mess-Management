@@ -54,6 +54,7 @@ const CreatePoll = () => {
 
   return (
     <div style={{ textAlign: "center", maxWidth: "400px", margin: "auto" }}>
+  
       <form
         onSubmit={handleSubmit}
         style={{
