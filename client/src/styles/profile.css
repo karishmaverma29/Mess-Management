@@ -1,46 +1,5 @@
-
-
-.container.bootstrap.snippets.bootdey {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.container.bootstrap {
-    width: calc(100% + 80px);
-    margin-left: -75px; /* Half of the width increase for centering */
-}
-
-.text-center {
-    text-align: center;
-}
-
-.avatar {
-    width: 200px;
-    height: 200px;
-}
-
-button {
-    margin-top: 20px;
-}
-
-.personal-info {
-    width: 100%;
-    max-width: 700px; /* Adjust the max-width as needed */
-    margin: 0 auto; /* Center the form horizontally */
-    padding: 20px;
-}
-
-.form-horizontal {
-    margin-top: 20px;
-}
-
-.ui-select {
-    width: 100%;
-}
-
-/* Add responsive styles for smaller screens if needed */
-@media (max-width: 768px) {
-    .container.bootstrap.snippets.bootdey {
-        max-width: 100%;
-    }
+body{margin-top:20px;}
+.avatar{
+width:200px;
+height:200px;
 }
