@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
       <main style={{ minHeight: "70vh" }}>
         {children}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

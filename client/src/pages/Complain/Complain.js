@@ -86,6 +86,7 @@ const AnimatedForm = () => {
         </button>
       </form>
     </div>
+    
   );
 };
 

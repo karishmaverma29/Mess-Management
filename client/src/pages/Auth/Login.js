@@ -1,4 +1,6 @@
 import React from "react";
+import "./login.css";
+
 import Layout from "./../../components/Layout/Layout";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -73,7 +75,8 @@ const Login = () => {
   return (
     <>
       <Layout>
-        <div className="form-container" style={{ minHeight: "90vh" }}>
+        {
+        /* <div className="form-container" style={{ minHeight: "90vh" }}>
           <form onSubmit={handleSubmit}>
             <h4 className="title">LOGIN FORM</h4>
 
@@ -121,17 +124,7 @@ const Login = () => {
               </FormControl>
             </div>
 
-            {/* <div className="mb-3">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => {
-                  navigate("/forgot-password");
-                }}
-              >
-                Forgot password
-              </button>
-            </div> */}
+           
 
             <button type="submit" className="btn btn-primary">
               Login
@@ -141,6 +134,75 @@ const Login = () => {
                 <Link to="/forgot-password">Forgot Password</Link>
               </div>
             )}
+          </form>
+        </div> */}
+      <div className="login_page">
+          <form className="login" onSubmit={handleSubmit}>
+            <h3
+              style={{
+                textAlign: "center", // Center align the text
+                fontWeight: "bold", // Make the text bold
+                color: "silver", // Set the text color to grey
+                marginBottom: "30px",
+              }}
+            >
+              LOGIN FORM
+            </h3>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="form-control"
+              id="exampleInputEmail1"
+              placeholder="Enter Your Email "
+              required
+            />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="form-control"
+              id="exampleInputPassword1"
+              placeholder="Enter Your Password"
+              required
+            />
+            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+    <InputLabel id="demo-select-small-label">Login As</InputLabel>
+    <Select
+      labelId="demo-select-small-label"
+      id="demo-select-small"
+      value={role}
+      label="Login As"
+      onChange={handleChange}
+      className="form-control" // Apply the same class as the input field
+    >
+      <MenuItem value="">
+        <em>None</em>
+      </MenuItem>
+      <MenuItem value={0}>Student</MenuItem>
+      <MenuItem value={1}>Warden</MenuItem>
+      <MenuItem value={2}>Accountant</MenuItem>
+      <MenuItem value={3}>Manager</MenuItem>
+    </Select>
+  </FormControl>
+            <button type="submit" className="btn btn-primary">
+              Login
+            </button>
+
+            <span
+              style={{
+                cursor: "pointer",
+                color: "white",
+                fontSize: "16px",
+                // textDecoration: "underline",
+                marginLeft: "120px",
+              }}
+              onClick={() => {
+                navigate("/forgot-password ");
+              }}
+            >
+              Forgot password ?
+            </span>
           </form>
         </div>
       </Layout>

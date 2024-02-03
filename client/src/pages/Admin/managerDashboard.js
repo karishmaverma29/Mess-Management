@@ -30,13 +30,13 @@ const ManagerDashboard = () => {
           borderRadius: "10px",
           padding: "20px 30px",
           margin: "0 30px",
-          textAlign: "center", // Center-align the content within the card
+          textAlign: "center", 
         }}
       >
         <div
           style={{
             display: "flex",
-            flexWrap: "wrap", // Allow items to wrap to the next line
+            flexWrap: "wrap", 
             justifyContent: "space-around",
             margin: "5px 0",
           }}
@@ -50,10 +50,9 @@ const ManagerDashboard = () => {
                 type="button"
                 className="btn btn-outline-primary"
                 style={{
-                  width: "100%", // Set the button width to 100%
-                  padding: "10px 20px", // Adjusted padding for a smaller button
-                  boxSizing: "border-box", // Ensure padding is included in the total width
-                }}
+                  width: "100%",
+                  padding: "10px 20px", 
+                  boxSizing: "border-box",                }}
               >
                 Update Mess Menu
               </button>
@@ -68,9 +67,9 @@ const ManagerDashboard = () => {
                 type="button"
                 className="btn btn-outline-primary"
                 style={{
-                  width: "100%", // Set the button width to 100%
-                  padding: "10px 20px", // Adjusted padding for a smaller button
-                  boxSizing: "border-box", // Ensure padding is included in the total width
+                  width: "100%", 
+                  padding: "10px 20px", 
+                  boxSizing: "border-box", 
                 }}
               >
                 Recipe
