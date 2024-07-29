@@ -105,13 +105,6 @@ With extensive knowledge of MongoDB, Express.js, React.js, and Node.js, I thrive
 Happy coding! 💫"
 
 
-## 🔗 Links
-Himanshu: [![Github](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/Himanshumnnit)
-Dinesh: [![Github](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/dinesh2325)
-karishma :
-Himanshu: [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/himanshu-sharma-021023283/)
-Dinesh: [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dinesh-kumar-paliwal/)
-Karishma:https://www.linkedin.com/in/karishmaverma29/
 
 
 ![Logo](https://miro.medium.com/v2/resize:fit:678/0*kxPYwfJmkXZ3iCWy.png)
