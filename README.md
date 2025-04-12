@@ -73,7 +73,9 @@ Feel free to reach out if you encounter any issues or have any questions. Be Hea
 ## Authors
 
 - [Dinesh Paliwal](https://github.com/dinesh2325)
+- [Karishma Verma](https://github.com/karishmaverma29)
 - [Himanshu Sharma](https://github.com/Himanshumnnit)
+- 
 
 
 ## Tech Stack Used 
